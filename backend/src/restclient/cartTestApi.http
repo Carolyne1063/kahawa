@@ -1,0 +1,36 @@
+### Add Item to Cart
+POST http://localhost:3000/cart/add
+Content-Type: application/json
+
+{
+    "userId": "36B35840-8B83-4327-AD3F-6CA0C8323F9C",
+    "productId": "8326b838-5680-4d81-a388-45e4332f1d1b",
+    "quantity": "5"
+}
+
+### Update Cart Item
+PUT http://localhost:3000/cart/update
+Content-Type: application/json
+
+{
+    "cartId": "d7eb4f3b-d9dc-40d9-8d26-936354d88661",
+    "userId": "36B35840-8B83-4327-AD3F-6CA0C8323F9C",
+    "productId": "8326b838-5680-4d81-a388-45e4332f1d1b",
+    "quantity": "3"
+}
+
+### Remove Item from Cart
+DELETE http://localhost:3000/cart/remove
+Content-Type: application/json
+
+{
+    "cartId": "d7eb4f3b-d9dc-40d9-8d26-936354d88661",
+    "userId": "36B35840-8B83-4327-AD3F-6CA0C8323F9C",
+    "productId": "8326b838-5680-4d81-a388-45e4332f1d1b"
+}
+
+### Get All Items in Cart
+GET http://localhost:3000/cart/items/36B35840-8B83-4327-AD3F-6CA0C8323F9C
+
+### Clear Cart
+DELETE http://localhost:3000/cart/clear/36B35840-8B83-4327-AD3F-6CA0C8323F9C

@@ -1,0 +1,26 @@
+### Create a New Order
+POST http://localhost:3000/api/orders/create-order
+Content-Type: application/json
+
+{
+    "userId": "36B35840-8B83-4327-AD3F-6CA0C8323F9C",
+    "productId": "e070174e-992d-4e0c-af63-17d6384eb0e6",
+    "quantity": "1"
+}
+
+### Update an Order
+PUT http://localhost:3000/api/orders/a6504825-cd32-44e7-80c9-ace0b20e4d60
+Content-Type: application/json
+
+{
+    "quantity": "3"
+}
+
+### Delete an Order
+DELETE http://localhost:3000/api/orders/3d5ff3be-0927-4f80-9183-9e9ae6e3b8db
+
+### Get All Orders
+GET http://localhost:3000/api/orders
+
+### Get Order by ID
+GET http://localhost:3000/api/orders/a6504825-cd32-44e7-80c9-ace0b20e4d60

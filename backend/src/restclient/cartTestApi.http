@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "userId": "36B35840-8B83-4327-AD3F-6CA0C8323F9C",
     "productId": "8326b838-5680-4d81-a388-45e4332f1d1b",
-    "quantity": "5"
+    "quantity": "10"
 }
 
 ### Update Cart Item
@@ -13,7 +13,7 @@ PUT http://localhost:3000/cart/update
 Content-Type: application/json
 
 {
-    "cartId": "d7eb4f3b-d9dc-40d9-8d26-936354d88661",
+    "cartId": "70afd76a-0a28-4318-98c6-c44620722e07",
     "userId": "36B35840-8B83-4327-AD3F-6CA0C8323F9C",
     "productId": "8326b838-5680-4d81-a388-45e4332f1d1b",
     "quantity": "3"
@@ -24,7 +24,7 @@ DELETE http://localhost:3000/cart/remove
 Content-Type: application/json
 
 {
-    "cartId": "d7eb4f3b-d9dc-40d9-8d26-936354d88661",
+    "cartId": "cc3e395c-0419-4435-b550-3e180880f56c",
     "userId": "36B35840-8B83-4327-AD3F-6CA0C8323F9C",
     "productId": "8326b838-5680-4d81-a388-45e4332f1d1b"
 }

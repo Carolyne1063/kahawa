@@ -5,10 +5,15 @@ CREATE PROCEDURE CreateOrder
     @quantity VARCHAR(255),
     @price VARCHAR(255),
     @flavor VARCHAR(255),
-    @name VARCHAR(255)
+    @name VARCHAR(255),
+    @address VARCHAR(255),
+    @phoneNumber VARCHAR(255),
+    @email VARCHAR(255)
 AS
 BEGIN
-    INSERT INTO orders (orderId, userId, productId, quantity, price, flavor, name)
-    VALUES (@orderId, @userId, @productId, @quantity, @price, @flavor, @name);
+    INSERT INTO orders (orderId, userId, productId, quantity, price, flavor, name, address, phoneNumber, email)
+    VALUES (@orderId, @userId, @productId, @quantity, @price, @flavor, @name, @address, @phoneNumber, @email);
 END;
 GO
+
+DROP PROCEDURE CreateOrder;

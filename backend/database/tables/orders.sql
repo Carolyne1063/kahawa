@@ -10,4 +10,6 @@ CREATE TABLE orders (
     FOREIGN KEY (productId) REFERENCES products(productId)
 );
 
+ALTER TABLE orders ADD email VARCHAR(255);
+
 SELECT * FROM orders;

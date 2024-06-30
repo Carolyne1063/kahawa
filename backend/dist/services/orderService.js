@@ -16,6 +16,11 @@ const createOrder = async (userId, productId, quantity) => {
             .input('productId', mssql_1.default.VarChar, productId)
             .query('SELECT price, flavor, name FROM products WHERE productId = @productId');
         const { price, flavor, name } = productResult.recordset[0];
+        // Fetch user details
+        const userResult = await pool.request()
+            .input('userId', mssql_1.default.VarChar, userId)
+            .query('SELECT address, phoneNumber, email FROM users WHERE userId = @userId');
+        const { address, phoneNumber, email } = userResult.recordset[0];
         await pool.request()
             .input('orderId', mssql_1.default.VarChar, orderId)
             .input('userId', mssql_1.default.VarChar, userId)
@@ -24,6 +29,9 @@ const createOrder = async (userId, productId, quantity) => {
             .input('price', mssql_1.default.VarChar, (parseFloat(price) * parseFloat(quantity)).toFixed(2)) // Convert price to string format
             .input('flavor', mssql_1.default.VarChar, flavor)
             .input('name', mssql_1.default.VarChar, name)
+            .input('address', mssql_1.default.VarChar, address) // Include address
+            .input('phoneNumber', mssql_1.default.VarChar, phoneNumber) // Include phone number
+            .input('email', mssql_1.default.VarChar, email) // Include email
             .execute('CreateOrder');
     }
     catch (err) {

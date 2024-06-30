@@ -15,6 +15,13 @@ export const createOrder = async (userId: string, productId: string, quantity: s
 
         const { price, flavor, name } = productResult.recordset[0];
 
+        // Fetch user details
+        const userResult = await pool.request()
+            .input('userId', sql.VarChar, userId)
+            .query('SELECT address, phoneNumber, email FROM users WHERE userId = @userId');
+
+        const { address, phoneNumber, email } = userResult.recordset[0];
+
         await pool.request()
             .input('orderId', sql.VarChar, orderId)
             .input('userId', sql.VarChar, userId)
@@ -23,6 +30,9 @@ export const createOrder = async (userId: string, productId: string, quantity: s
             .input('price', sql.VarChar, (parseFloat(price) * parseFloat(quantity)).toFixed(2))  // Convert price to string format
             .input('flavor', sql.VarChar, flavor)
             .input('name', sql.VarChar, name)
+            .input('address', sql.VarChar, address)  // Include address
+            .input('phoneNumber', sql.VarChar, phoneNumber)  // Include phone number
+            .input('email', sql.VarChar, email)  // Include email
             .execute('CreateOrder');
     } catch (err) {
         throw new Error(`Error creating order: ${err instanceof Error ? err.message : 'An unknown error occurred'}`);

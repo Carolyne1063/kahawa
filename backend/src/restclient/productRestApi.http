@@ -1,0 +1,36 @@
+### Create a New Product
+POST http://localhost:3000/api/products/create-product
+Content-Type: application/json
+
+{
+    "name": "Cappuccinoghnjmj",
+    "short_description": "An espresso-based coffee drink that is traditionally prepared with steamed milk.",
+    "price": "5.00",
+    "image": "http://example.com/espresso.jpg",
+    "category": "Coffee",
+    "stock": "100",
+    "flavor": "Strong"
+}
+
+### Update a Product
+PUT http://localhost:3000/api/products/8d3b193b-e672-458c-becc-c749f5bc1b30
+Content-Type: application/json
+
+{
+    "name": "Espressoghnm,kjbbn",
+    "short_description": "Rich and bold coffee",
+    "price": "5.50",
+    "image": "http://example.com/espresso.jpg",
+    "category": "Coffee",
+    "stock": "90",
+    "flavor": "Strong"
+}
+
+### Delete a Product
+DELETE http://localhost:3000/api/products/8d3b193b-e672-458c-becc-c749f5bc1b30
+
+### Get All Products
+GET http://localhost:3000/api/products
+
+### Get Product by ID
+GET http://localhost:3000/api/products/8d3b193b-e672-458c-becc-c749f5bc1b30

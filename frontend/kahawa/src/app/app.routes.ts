@@ -6,14 +6,19 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 // import { RegisterComponent } from './components/register/register.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { MenuComponent } from './components/menu/menu.component';
+
 
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
 //   { path: 'login', component: LoginComponent },
 //   { path: 'register', component: RegisterComponent },
-  { path: 'user-dashboard', component: UserDashboardComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
+  { path: 'admin', component: AdminDashboardComponent },
+   {path:'user',component:UserDashboardComponent,children:[
+    {path:'menu',component:MenuComponent}
+  ]},
+
   { path: '**', redirectTo: '' }
 ];
 
@@ -25,3 +30,4 @@ const routes: Routes = [
   export class AppRoutingModule {}
   
   export { routes };
+

@@ -1,1 +1,136 @@
-<p>landing-page works!</p>
+<main>
+    <app-navbar></app-navbar>
+    <div class="home">
+        <div class="hero">
+            <div class="hero-text">
+                <h1>FRESH COFFEE IN <br>THE MORNING</h1>
+                <div class="catchphrase">
+                    <p>May your coffee be strong and your Monday be short.</p>
+                <p>You’re only one sip away from a good mood!</p>
+                </div>
+                <p style="margin-left: 80px;">Espresso Yourself. Have a brewtiful day!</p>
+                <img src="https://i.pinimg.com/474x/22/e2/58/22e258f7b85f00ba15e68b7e0cb266ae.jpg" alt="">
+            </div>
+            <div class="hero-image">
+                <img src="https://i.pinimg.com/474x/d5/ca/63/d5ca63d1cfa4b309a5d57b195b6bec03.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="about">
+        <h1>About Us</h1>
+        <div class="container">
+            <div class="about-image">
+                <img src="https://i.pinimg.com/474x/62/a5/1f/62a51f01fee9f653d420ad86e396a54e.jpg" alt="">
+            </div>
+            <div class="about-text">
+                <h1>What Makes our Coffee Special?</h1>
+                <p>
+                    At Kahawa, we source the finest beans from ethical farms and artisan roast them to perfection. 
+                    Enjoy rich, full-bodied flavors in every cup. Experience our commitment to quality and sustainability with every sip. 
+                    Welcome to a coffee experience like no other.
+                </p>
+                <p>
+                    Our commitment to quality doesn't stop at the beans. 
+                    We embrace eco-friendly practices and actively engage with our community to support local farmers. 
+                    Join us in savoring a coffee that's not only delicious but also makes a positive impact. 
+                    Savor the exceptional—sip by sip.
+                </p>
+                <button>Learn More</button>
+            </div>
+        </div>
+    </div>
+    <div class="menu">
+        <h1> OUR MENU</h1>
+        <div class="products-list">
+            <div *ngFor="let product of products" class="product-card">
+                <img [src]="product.image" alt="{{product.name}}">
+                <p>{{product.name}}</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="reviews">
+        <h1>Customer Reviews</h1>
+        <div class="review-cards-list">
+            <div class="review-card">
+                <div class="profile">
+                    <div class="profile-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3WEmfJCME77ZGymWrlJkXRv5bWg9QQmQEzw&s" alt="">
+                    </div>
+                    <div class="profile-text">
+                        <p>Jane Doe</p>
+                        <p>3 Months Ago</p>
+                    </div>
+                </div>
+                <div class="review-text">
+                    <br>
+                    <p>
+                        "I've been to many coffee shops, but none compare to Kahawa. 
+                        The atmosphere is cozy, the staff is friendly, and the coffee is simply divine. 
+                        Every cup is a burst of rich, flavorful perfection. 
+                        This is my new favorite spot!"
+                    </p>
+                    <br>
+                    <p>⭐⭐⭐⭐⭐</p>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="profile">
+                    <div class="profile-image">
+                        <img src="https://i.pinimg.com/474x/d9/bc/1a/d9bc1abeb5be60f7e6075790946dfc01.jpg" alt="">
+                    </div>
+                    <div class="profile-text">
+                        <p>Emma R.</p>
+                        <p>5 Months Ago</p>
+                    </div>
+                </div>
+                <div class="review-text">
+                    <br>
+                    <p>
+                        "Kahawa has completely changed my coffee game. 
+                        The beans are always fresh and the flavors are unparalleled. I love knowing that I'm supporting ethical and sustainable practices with every purchase. 
+                        Highly recommend!"
+                    </p>
+                    <br>
+                    <p>⭐⭐⭐⭐⭐</p>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="profile">
+                    <div class="profile-image">
+                        <img src="https://i.pinimg.com/474x/5d/cd/c8/5dcdc8b97bf1e29b57d85d5dc69d1904.jpg" alt="">
+                    </div>
+                    <div class="profile-text">
+                        <p>Michael S.</p>
+                        <p>6 Months Ago</p>
+                    </div>
+                </div>
+                <div class="review-text">
+                    <br>
+                    <p>
+                        "I stumbled upon [Your Coffee Shop] and it was a game-changer. 
+                        The artisan roasting makes a world of difference. The taste is so smooth and aromatic. 
+                        Plus, their eco-friendly initiatives make me feel good about where I’m spending my money."
+                    </p>
+                    <br>
+                    <p>⭐⭐⭐⭐⭐</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contactus">
+        <h1>Get In Touch with Us</h1>
+        <p><i class="fa-solid fa-location-dot"></i>Chuka, Ndagani</p>
+        <p><i class="fa-solid fa-phone-volume"></i>+1(455)3456 9876</p>
+        <br>
+        <div class="socials">
+            <div class="logos">
+                <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-x-twitter"></i>
+            </div>
+            <p>Created By CIS Arts | All Rights Reserved</p>
+        </div>
+        
+    </div>
+</main>

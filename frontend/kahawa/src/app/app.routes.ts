@@ -1,14 +1,33 @@
-import { Routes } from '@angular/router';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes, provideRouter } from '@angular/router';
+
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+// import { LoginComponent } from './components/login/login.component';
+// import { RegisterComponent } from './components/register/register.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { MenuComponent } from './components/menu/menu.component';
 
-export const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path:'admin',component:AdminDashboardComponent},
-  {path:'user',component:UserDashboardComponent,children:[
+
+
+const routes: Routes = [
+  { path: '', component: LandingPageComponent },
+//   { path: 'login', component: LoginComponent },
+//   { path: 'register', component: RegisterComponent },
+  { path: 'admin', component: AdminDashboardComponent },
+   {path:'user',component:UserDashboardComponent,children:[
     {path:'menu',component:MenuComponent}
   ]},
 
+  { path: '**', redirectTo: '' }
 ];
+
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule {}
   
+  export { routes };
+

@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    background-color: black;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+.logo{
+    width: 100px;
+    height: 70px;
+}
+.nav-links{
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    display: flex;
+    gap: 45px;
+}
+.nav-links p:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.nav-links button{
+    width: 70px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.nav-links button:hover{
+    cursor: pointer;
+}
+.nav-links input{
+    padding: 12px;
+}

@@ -15,21 +15,38 @@ const addItemToCart = async (userId, productId, quantity) => {
         // Fetch product details
         const productResult = await pool.request()
             .input('productId', mssql_1.default.VarChar, productId)
-            .query('SELECT price, flavor, name FROM products WHERE productId = @productId');
+            .query('SELECT price, flavor, name, stock FROM products WHERE productId = @productId');
         if (productResult.recordset.length === 0) {
             throw new Error('Product not found');
         }
-        const { price, flavor, name } = productResult.recordset[0];
+        const { price, flavor, name, stock } = productResult.recordset[0];
+        const newStock = stock - parseInt(quantity);
+        if (newStock < 0) {
+            throw new Error('Not enough stock available');
+        }
         const totalPrice = (parseFloat(price) * parseFloat(quantity)).toFixed(2); // Calculate total price
-        await pool.request()
-            .input('cartId', mssql_1.default.VarChar, cartId)
-            .input('userId', mssql_1.default.VarChar, userId)
-            .input('productId', mssql_1.default.VarChar, productId)
-            .input('quantity', mssql_1.default.VarChar, quantity)
-            .input('price', mssql_1.default.VarChar, totalPrice) // Use the calculated total price
-            .input('flavor', mssql_1.default.VarChar, flavor)
-            .input('name', mssql_1.default.VarChar, name)
-            .execute('AddItemToCart');
+        const transaction = new mssql_1.default.Transaction(pool);
+        try {
+            await transaction.begin();
+            await transaction.request()
+                .input('cartId', mssql_1.default.VarChar, cartId)
+                .input('userId', mssql_1.default.VarChar, userId)
+                .input('productId', mssql_1.default.VarChar, productId)
+                .input('quantity', mssql_1.default.VarChar, quantity)
+                .input('price', mssql_1.default.VarChar, totalPrice) // Use the calculated total price
+                .input('flavor', mssql_1.default.VarChar, flavor)
+                .input('name', mssql_1.default.VarChar, name)
+                .execute('AddItemToCart');
+            await transaction.request()
+                .input('productId', mssql_1.default.VarChar, productId)
+                .input('newStock', mssql_1.default.Int, newStock)
+                .query('UPDATE products SET stock = @newStock WHERE productId = @productId');
+            await transaction.commit();
+        }
+        catch (err) {
+            await transaction.rollback();
+            throw err;
+        }
     }
     catch (err) {
         console.error(`Error adding item to cart: ${err instanceof Error ? err.message : 'An unknown error occurred'}`);
@@ -68,11 +85,37 @@ exports.updateCartItem = updateCartItem;
 const removeItemFromCart = async (cartId, userId, productId) => {
     try {
         let pool = await mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        await pool.request()
+        const cartResult = await pool.request()
             .input('cartId', mssql_1.default.VarChar, cartId)
-            .input('userId', mssql_1.default.VarChar, userId)
+            .query('SELECT quantity FROM cart WHERE cartId = @cartId');
+        if (cartResult.recordset.length === 0) {
+            throw new Error('Cart item not found');
+        }
+        const quantity = cartResult.recordset[0].quantity;
+        const productResult = await pool.request()
             .input('productId', mssql_1.default.VarChar, productId)
-            .execute('RemoveItemFromCart');
+            .query('SELECT stock FROM products WHERE productId = @productId');
+        if (productResult.recordset.length === 0) {
+            throw new Error('Product not found');
+        }
+        const { stock } = productResult.recordset[0];
+        const newStock = stock + parseInt(quantity);
+        const transaction = new mssql_1.default.Transaction(pool);
+        try {
+            await transaction.begin();
+            await transaction.request()
+                .input('cartId', mssql_1.default.VarChar, cartId)
+                .execute('RemoveItemFromCart');
+            await transaction.request()
+                .input('productId', mssql_1.default.VarChar, productId)
+                .input('newStock', mssql_1.default.Int, newStock)
+                .query('UPDATE products SET stock = @newStock WHERE productId = @productId');
+            await transaction.commit();
+        }
+        catch (err) {
+            await transaction.rollback();
+            throw err;
+        }
     }
     catch (err) {
         console.error(`Error removing item from cart: ${err instanceof Error ? err.message : 'An unknown error occurred'}`);

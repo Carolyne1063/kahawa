@@ -13,5 +13,4 @@ export class OrderService {
   getOrders(): Observable<any> {
     return this.http.get('/api/orders');
   }
-  
 }

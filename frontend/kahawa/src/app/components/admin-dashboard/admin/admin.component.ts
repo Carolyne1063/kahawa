@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 
+
+
 import { Router, RouterLink } from '@angular/router';
 import { AdminService } from '../../../services/admin.service';
 import { FormsModule } from '@angular/forms';
@@ -38,6 +40,5 @@ export class AdminComponent implements OnInit {
     this.adminService.getCustomers().subscribe(data => {
       this.customersCount = data.count;
     });
-  }
-}
 
+  }}

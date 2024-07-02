@@ -1,0 +1,34 @@
+<!-- src/app/sign-up/sign-up.component.html -->
+<div class="container" id="container">
+    <div class="form-container sign-up-container" id="sign-up-container">
+      <form id="signUpForm" action="http://localhost:3000/api/auth/register" method="POST">
+        <h1>Create Account</h1>
+        <input type="text" name="username" placeholder="Username" id="username" required>
+        <input type="email" name="email" placeholder="Email" id="email" required>
+        <input type="password" name="password" placeholder="Password" id="password" required>
+        <button type="submit">Create Account</button>
+        <h5>Already have an account? <a class="ghost" id="signIn">Sign In</a></h5>
+      </form>
+    </div>
+    <div class="form-container sign-in-container" id="sign-in-container">
+      <form id="signInForm" action="http://localhost:3000/api/auth/login" method="POST">
+        <h1>Login Now</h1>
+        <input type="email" name="email" placeholder="Email" id="loginEmail" required>
+        <input type="password" name="password" placeholder="Password" id="loginPassword" required>
+        <a href="#">Forgot Your Password?</a>
+        <button type="submit">Sign In</button>
+        <h5>New here? <a class="ghost" id="signUp">Sign Up</a></h5>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <img src="https://pixabay.com/photos/coffee-caffeine-malaysian-coffee-7561288/" alt="img" height="100%" width="400" />
+        </div>
+        <div class="overlay-panel overlay-right">
+          <img src="https://pixabay.com/photos/coffee-coffee-beans-cup-coffee-cup-171653/" alt="IMAGE" height="100%" width="400" />
+        </div>
+      </div>
+    </div>
+  </div>
+  

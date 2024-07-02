@@ -1,4 +1,5 @@
 
+
 import { RouterLink } from '@angular/router';
 
 import { AdminComponent } from '../admin/admin.component';
@@ -34,4 +35,6 @@ export class OrdersComponent implements OnInit {
       this.orders = data;
     });
   }
+
+
 }

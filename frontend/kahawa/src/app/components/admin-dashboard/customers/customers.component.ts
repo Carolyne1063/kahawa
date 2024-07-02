@@ -7,6 +7,8 @@ import { CustomerService } from '../../../services/customer.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
+import { MenuComponent } from '../menu/menu.component';
+
 
 @Component({
   selector: 'app-customers',
@@ -15,6 +17,7 @@ import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
   templateUrl: './customers.component.html',
   styleUrl: './customers.component.css'
 })
+
 export class CustomersComponent implements OnInit {
   customers: any[] = [];
 

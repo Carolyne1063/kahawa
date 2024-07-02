@@ -9,12 +9,12 @@ const userRoutes_1 = __importDefault(require("./routers/userRoutes"));
 const productRoutes_1 = __importDefault(require("./routers/productRoutes"));
 const orderRoutes_1 = __importDefault(require("./routers/orderRoutes"));
 const cartRoutes_1 = __importDefault(require("./routers/cartRoutes"));
-// import cors from 'cors';
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 const port = 3000;
 app.use(body_parser_1.default.json());
 app.use(express_1.default.json());
-// app.use(cors())
+app.use((0, cors_1.default)());
 app.use('/api/users', userRoutes_1.default);
 app.use('/api', productRoutes_1.default);
 app.use('/api', orderRoutes_1.default);

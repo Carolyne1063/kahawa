@@ -20,12 +20,13 @@ const addItemToCart = async (userId, productId, quantity) => {
             throw new Error('Product not found');
         }
         const { price, flavor, name } = productResult.recordset[0];
+        const totalPrice = (parseFloat(price) * parseFloat(quantity)).toFixed(2); // Calculate total price
         await pool.request()
             .input('cartId', mssql_1.default.VarChar, cartId)
             .input('userId', mssql_1.default.VarChar, userId)
             .input('productId', mssql_1.default.VarChar, productId)
             .input('quantity', mssql_1.default.VarChar, quantity)
-            .input('price', mssql_1.default.VarChar, price)
+            .input('price', mssql_1.default.VarChar, totalPrice) // Use the calculated total price
             .input('flavor', mssql_1.default.VarChar, flavor)
             .input('name', mssql_1.default.VarChar, name)
             .execute('AddItemToCart');
@@ -40,11 +41,21 @@ exports.addItemToCart = addItemToCart;
 const updateCartItem = async (cartId, userId, productId, quantity) => {
     try {
         let pool = await mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        // Fetch product details for recalculating the price
+        const productResult = await pool.request()
+            .input('productId', mssql_1.default.VarChar, productId)
+            .query('SELECT price FROM products WHERE productId = @productId');
+        if (productResult.recordset.length === 0) {
+            throw new Error('Product not found');
+        }
+        const { price } = productResult.recordset[0];
+        const totalPrice = (parseFloat(price) * parseFloat(quantity)).toFixed(2); // Calculate total price
         await pool.request()
             .input('cartId', mssql_1.default.VarChar, cartId)
             .input('userId', mssql_1.default.VarChar, userId)
             .input('productId', mssql_1.default.VarChar, productId)
             .input('quantity', mssql_1.default.VarChar, quantity)
+            .input('price', mssql_1.default.VarChar, totalPrice) // Use the calculated total price
             .execute('UpdateCartItem');
     }
     catch (err) {

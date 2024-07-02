@@ -4,7 +4,7 @@ import userRoutes from './routers/userRoutes'
 import productRoutes from './routers/productRoutes';
 import orderRoutes from './routers/orderRoutes';
 import cartRoutes from './routers/cartRoutes'; 
-// import cors from 'cors';
+import cors from 'cors';
 
 
 
@@ -13,8 +13,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(express.json());
-
-// app.use(cors())
+app.use(cors())
 
 
 app.use('/api/users', userRoutes);

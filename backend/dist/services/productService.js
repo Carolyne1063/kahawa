@@ -73,7 +73,7 @@ const getAllProducts = async () => {
     try {
         let pool = await mssql_1.default.connect(sqlConfig_1.sqlConfig);
         let result = await pool.request().execute('GetAllProducts');
-        return result.recordset;
+        return result.recordset.filter(product => product.stock > 0); // Filter out products with zero stock
     }
     catch (err) {
         throw new Error(`Error fetching products: ${getErrorMessage(err)}`);

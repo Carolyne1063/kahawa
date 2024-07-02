@@ -39,7 +39,7 @@
   width: 100%;
 }
 
-.nav-links a, .logout-button {
+.nav-links a, .nav-links p {
   text-align: center;
   padding: 10px;
   margin: 5px 0;

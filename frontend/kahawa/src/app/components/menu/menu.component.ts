@@ -42,14 +42,14 @@ export class MenuComponent {
     {
       name: 'Americano',
       description: 'Espresso with hot water.',
-      image: 'assets/americano.jpg',
+      image: 'americano.jpeg',
       stock: 20,
       price: 2.5
     },
     {
       name: 'Macchiato',
       description: 'Espresso with a small amount of foamed milk.',
-      image: 'assets/macchiato.jpg',
+      image: 'macchiato.jpeg',
       stock: 5,
       price: 3.5
     }

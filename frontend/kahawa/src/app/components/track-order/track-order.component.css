@@ -52,3 +52,12 @@
 .orders-table td:last-child {
   border-bottom: none;
 }
+
+button{
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}

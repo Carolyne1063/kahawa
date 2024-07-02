@@ -24,11 +24,19 @@ const routes: Routes = [
     {path: 'orders', component: OrdersComponent},
     {path: 'customers', component: CustomersComponent},
   ] },
+//   { path: 'register', component: RegisterComponent },
+  { path: 'admin', component:AdminComponent},
+    {path:'menu',component:MenuComponent},
+    {path:'orders',component:OrdersComponent},
+    {path:'customers',component:CustomersComponent}
+
+  ,
    {path:'user',component:UserDashboardComponent,children:[
     {path:'menu',component:MenuComponent},
     {path:'cart',component:ShoppingCartComponent},
     {path:'track-order',component:TrackOrderComponent}
   ]},
+  {path:'forms',component:FormsComponent},
 
   { path: '**', redirectTo: '' }
 ];

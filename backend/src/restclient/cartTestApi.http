@@ -4,8 +4,8 @@ Content-Type: application/json
 
 {
     "userId": "36B35840-8B83-4327-AD3F-6CA0C8323F9C",
-    "productId": "8326b838-5680-4d81-a388-45e4332f1d1b",
-    "quantity": "10"
+    "productId": "50d51fe0-94c3-4d34-bcd5-bda5e2bc79c1",
+    "quantity": "5"
 }
 
 ### Update Cart Item

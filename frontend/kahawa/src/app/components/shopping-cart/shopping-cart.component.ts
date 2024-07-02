@@ -1,12 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../../services/cart.service';
+import { CartItem } from '../../interfaces/cart';
 
-interface CartItem {
-  name: string;
-  price: number;
-  quantity: number;
-}
 
 @Component({
   selector: 'app-shopping-cart',
@@ -17,18 +14,35 @@ interface CartItem {
 })
 
 export class ShoppingCartComponent {
-  cartItems: CartItem[] = [
-    { name: 'Espresso', price: 3.50, quantity: 2 },
-    { name: 'Cappuccino', price: 4.00, quantity: 1 },
-    { name: 'Latte', price: 4.50, quantity: 1 }
-  ];
-
+  cartItems: CartItem[] = [];
   name: string = '';
   address: string = '';
   telNo: string = '';
 
+  constructor(private cartService: CartService) {}
+
+  ngOnInit() {
+    this.loadCartItems();
+  }
+
+  loadCartItems() {
+    const userId = 'exampleUserId'; // Replace with actual user ID
+    this.cartService.getCartItems(userId).subscribe(
+      (items) => {
+        this.cartItems = items;
+      },
+      (error) => {
+        console.error('Error fetching cart items:', error);
+      }
+    );
+  }
+
   getTotal() {
-    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+    return this.cartItems.reduce((total, item) => total + parseFloat(item.price) * parseInt(item.quantity), 0).toFixed(2);
+  }
+
+  formatPrice(price: string) {
+    return parseFloat(price).toFixed(2);
   }
 
   isFormValid() {

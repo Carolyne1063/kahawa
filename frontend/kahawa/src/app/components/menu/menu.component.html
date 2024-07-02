@@ -3,17 +3,17 @@
     <input type="text" placeholder="Search..." />
   </div>
   <h1 class="title">Menu</h1>
-  <div class="menu-items">
-    <div *ngFor="let item of menuItems" class="card">
+  <div class="products-list">
+    <div *ngFor="let product of menuProducts" class="card">
       <div class="card-image-container">
-        <img [src]="item.image" alt="{{ item.name }}" class="card-image" />
-        <button (click)="addToCart(item)" class="add-to-cart-btn">Add to Cart</button>
+        <img [src]="product.image" alt="{{ product.name }}" class="card-image" />
+        <button (click)="addToCart(product)" class="add-to-cart-btn">Add to Cart</button>
       </div>
       <div class="card-content">
-        <h2 class="card-title">{{ item.name }}</h2>
-        <p class="card-description">{{ item.description }}</p>
-        <p class="card-price">${{ item.price.toFixed(2) }}</p>
-        <p class="card-stock">Stock: {{ item.stock }} cups</p>
+        <h2 class="card-title">{{ product.name }}</h2>
+        <p class="card-description">{{ product.short_description }}</p>
+        <p class="card-price">${{ product.price }}</p>
+        <p class="card-stock">Stock: {{ product.stock }} cups</p>
       </div>
     </div>
   </div>

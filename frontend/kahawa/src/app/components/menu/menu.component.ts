@@ -1,62 +1,45 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../interfaces/product';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
-  menuItems = [
-    {
-      name: 'Espresso',
-      description: 'Strong and bold espresso coffee.',
-      image: 'espresso.jpeg',
-      stock: 10,
-      price: 3.0
-    },
-    {
-      name: 'Cappuccino',
-      description: 'Creamy cappuccino with frothed milk.',
-      image: 'cappuccino.jpeg',
-      stock: 8,
-      price: 4.5
-    },
-    {
-      name: 'Latte',
-      description: 'Smooth latte with steamed milk.',
-      image: 'latte.jpeg',
-      stock: 15,
-      price: 4.0
-    },
-    {
-      name: 'Mocha',
-      description: 'Chocolate flavored coffee with whipped cream.',
-      image: 'mocha.jpeg',
-      stock: 12,
-      price: 4.5
-    },
-    {
-      name: 'Americano',
-      description: 'Espresso with hot water.',
-      image: 'americano.jpeg',
-      stock: 20,
-      price: 2.5
-    },
-    {
-      name: 'Macchiato',
-      description: 'Espresso with a small amount of foamed milk.',
-      image: 'macchiato.jpeg',
-      stock: 5,
-      price: 3.5
-    }
-  ];
+  menuProducts: Product[] = [];
+  cartService: any;
 
-  addToCart(item: any) {
-    console.log('Adding to cart:', item);
-    // Implement add to cart functionality here
+  constructor(private productService: ProductService) {}
+
+  ngOnInit() {
+    this.productService.getAllProducts().subscribe(
+      (products) => {
+        this.menuProducts = products;
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+      }
+    );
+  }
+
+  addToCart(product: Product) {
+    const quantity = '1'; // Replace with actual quantity
+    this.cartService.addItemToCart(this.userId, product.productId, quantity).subscribe(
+      (response: any) => {
+        console.log('Added to cart:', response);
+      },
+      (error: any) => {
+        console.error('Error adding to cart:', error);
+      }
+    );
+  }
+  userId(userId: any, productId: string, quantity: string) {
+    throw new Error('Method not implemented.');
   }
 }

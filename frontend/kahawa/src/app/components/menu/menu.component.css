@@ -1,6 +1,7 @@
 .menu {
   padding: 20px;
   color: #fff;
+  height: fit-content;
 }
 
 .search-bar {
@@ -22,7 +23,7 @@
   margin-bottom: 20px;
 }
 
-.menu-items {
+.products-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;

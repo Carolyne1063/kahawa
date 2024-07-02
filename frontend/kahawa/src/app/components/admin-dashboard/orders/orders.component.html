@@ -1,11 +1,12 @@
+<!-- src/app/orders/orders.component.html -->
 <div class="dashboard">
     <div class="sidebar">
         <ul>
-            <li routerLink="">ADMIN</li>
-            <li routerLink="/menu">MENU</li>
+            <li routerLink="/admin">ADMIN</li>
+            <li routerLink="/menu-admin">MENU</li>
             <li routerLink="/orders" id="this">ORDERS</li>
             <li routerLink="/customers">CUSTOMERS</li>
-            <li id="logout">LOG OUT</li>
+            <li id="logout" routerLink="''">LOG OUT</li>
         </ul>
     </div>
     <div class="container">
@@ -26,33 +27,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>101</td>
-                            <td>Product A</td>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>123 Street, City</td>
-                            <td>123-456-7890</td>
-                            <td>Confirmed</td>
+                        <tr *ngFor="let order of orders">
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.item }}</td>
+                            <td>{{ order.customerId }}</td>
+                            <td>{{ order.name }}</td>
+                            <td>{{ order.address }}</td>
+                            <td>{{ order.tel }}</td>
+                            <td>{{ order.status }}</td>
                             <td>
                                 <button class="delete-btn">Delete</button>
                                 <button class="update-btn">Update</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>102</td>
-                            <td>Product B</td>
-                            <td>2</td>
-                            <td>Jane Smith</td>
-                            <td>456 Avenue, Town</td>
-                            <td>987-654-3210</td>
-                            <td>Pending</td>
-                            <td>
-                                <button class="delete-btn">Delete</button>
-                                <button class="update-btn">Update</button>
-                            </td>
-                        </tr>
-                        <!-- Add more rows as needed -->
                     </tbody>
                 </table>
             </div>

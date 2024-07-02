@@ -1,3 +1,4 @@
+/* General styles */
 .dashboard {
     background-color: #000;
     color: #fff;
@@ -25,9 +26,7 @@
     align-items: center;
     padding-top: 20px;
 }
-#this{
-    background-color: #754e14;
-}
+
 .sidebar ul {
     list-style-type: none;
     padding: 0;
@@ -158,4 +157,61 @@
     margin: 0 10px;
     font-size: 20px;
     cursor: pointer;
+}
+
+/* Form styles */
+.add-item-form {
+    display: none;
+    background-color: #000;
+    color: #754e14;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 80%;
+}
+
+.add-item-form h3 {
+    color: #754e14;
+}
+
+.add-item-form label {
+    color: #754e14;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.add-item-form input[type="file"],
+.add-item-form input[type="text"],
+.add-item-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #754e14;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+}
+
+.add-item-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #754e14;
+    color: #fff;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.add-item-form button:hover {
+    background-color: #967846;
+}
+
+.add-item-form button:last-child {
+    margin-left: 10px;
+    background-color: #ff4d4d;
+}
+
+.add-item-form button:last-child:hover {
+    background-color: #cc0000;
 }

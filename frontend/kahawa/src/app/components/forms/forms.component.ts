@@ -1,4 +1,6 @@
+
 import { Component, OnInit } from '@angular/core';
+
 import { RouterOutlet } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
@@ -13,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css']
 })
+
 export class FormsComponent implements OnInit {
   registerForm: FormGroup;
   loginForm: FormGroup;
@@ -37,19 +40,25 @@ export class FormsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     const container = document.getElementById('container');
     const signUpBtn = document.getElementById('signUp');
     const signInBtn = document.getElementById('signIn');
+
+
 
     if (signUpBtn && signInBtn && container) {
       signUpBtn.addEventListener('click', () => {
         container.classList.add('right-panel-active');
       });
+
       signInBtn.addEventListener('click', () => {
         container.classList.remove('right-panel-active');
       });
     }
   }
+
+
 
   register(): void {
     if (this.registerForm.valid) {
@@ -88,4 +97,7 @@ export class FormsComponent implements OnInit {
   get loginControls() {
     return this.loginForm.controls;
   }
+
 }
+
+

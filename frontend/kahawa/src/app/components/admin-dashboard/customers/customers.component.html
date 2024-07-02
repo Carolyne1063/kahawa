@@ -1,0 +1,56 @@
+<div class="dashboard">
+    <div class="sidebar">
+        <ul>
+            <li routerLink="">ADMIN</li>
+            <li routerLink="/menu">MENU</li>
+            <li routerLink="/orders">ORDERS</li>
+            <li routerLink="/customers" id="this">CUSTOMERS</li>
+            <li id="logout">LOG OUT</li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="bar">CUSTOMERS</div>
+        <div class="content">
+            <div class="mycontent">
+                <table class="customer-table">
+                    <thead>
+                        <tr>
+                            <th>CUSTOMER ID</th>
+                            <th>NAME</th>
+                            <th>EMAIL</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>johndoe&#64;example.com</td>
+                            <td>
+                                <button class="delete-btn">Delete</button>
+                                <button class="update-btn">Update</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jane Smith</td>
+                            <td>janesmith&#64;example.com</td>
+                            <td>
+                                <button class="delete-btn">Delete</button>
+                                <button class="update-btn">Update</button>
+                            </td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> 
+</div>
+<div class="footer">
+    <ul>
+        <li>twitter</li>
+        <li>facebook</li>
+        <li>instagram</li>
+    </ul>
+</div>

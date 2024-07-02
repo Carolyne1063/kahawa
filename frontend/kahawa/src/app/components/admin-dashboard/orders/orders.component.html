@@ -1,0 +1,68 @@
+<div class="dashboard">
+    <div class="sidebar">
+        <ul>
+            <li routerLink="">ADMIN</li>
+            <li routerLink="/menu">MENU</li>
+            <li routerLink="/orders" id="this">ORDERS</li>
+            <li routerLink="/customers">CUSTOMERS</li>
+            <li id="logout">LOG OUT</li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="bar">ORDERS</div>
+        <div class="content">
+            <div class="mycontent">
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>ORDER ID</th>
+                            <th>ITEM</th>
+                            <th>CUSTOMER ID</th>
+                            <th>NAME</th>
+                            <th>ADDRESS</th>
+                            <th>TEL</th>
+                            <th>STATUS</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>Product A</td>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>123 Street, City</td>
+                            <td>123-456-7890</td>
+                            <td>Confirmed</td>
+                            <td>
+                                <button class="delete-btn">Delete</button>
+                                <button class="update-btn">Update</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>Product B</td>
+                            <td>2</td>
+                            <td>Jane Smith</td>
+                            <td>456 Avenue, Town</td>
+                            <td>987-654-3210</td>
+                            <td>Pending</td>
+                            <td>
+                                <button class="delete-btn">Delete</button>
+                                <button class="update-btn">Update</button>
+                            </td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> 
+</div>
+<div class="footer">
+    <ul>
+        <li>twitter</li>
+        <li>facebook</li>
+        <li>instagram</li>
+    </ul>
+</div>

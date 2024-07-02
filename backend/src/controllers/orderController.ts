@@ -57,3 +57,12 @@ export const getOrderById = async (req: Request, res: Response) => {
         res.status(500).json({ error: getErrorMessage(err) });
     }
 };
+
+export const getOrdersByUserId = async (req: Request, res: Response) => {
+    try {
+        const orders = await orderService.getOrdersByUserId(req.params.userId);
+        res.status(200).json(orders);
+    } catch (err: unknown) {
+        res.status(500).json({ error: getErrorMessage(err) });
+    }
+};

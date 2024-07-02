@@ -33,6 +33,8 @@ export const createOrder = async (userId: string, productId: string, quantity: s
             .input('address', sql.VarChar, address)  // Include address
             .input('phoneNumber', sql.VarChar, phoneNumber)  // Include phone number
             .input('email', sql.VarChar, email)  // Include email
+            .input('status', sql.VarChar, 'Pending')  // Default status
+            .input('date', sql.DateTime, new Date())  // Set current date and time
             .execute('CreateOrder');
     } catch (err) {
         throw new Error(`Error creating order: ${err instanceof Error ? err.message : 'An unknown error occurred'}`);
@@ -98,5 +100,17 @@ export const getOrderById = async (orderId: string): Promise<Order> => {
         return result.recordset[0];
     } catch (err) {
         throw new Error(`Error fetching order: ${err instanceof Error ? err.message : 'An unknown error occurred'}`);
+    }
+};
+
+export const getOrdersByUserId = async (userId: string): Promise<Order[]> => {
+    try {
+        let pool = await sql.connect(sqlConfig);
+        let result = await pool.request()
+            .input('userId', sql.VarChar, userId)
+            .execute('GetOrdersByUserId');
+        return result.recordset;
+    } catch (err) {
+        throw new Error(`Error fetching orders for user: ${err instanceof Error ? err.message : 'An unknown error occurred'}`);
     }
 };

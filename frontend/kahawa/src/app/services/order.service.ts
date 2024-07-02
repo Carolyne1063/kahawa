@@ -7,7 +7,7 @@ import { Order } from '../interfaces/order';  // Adjust the import path as neede
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl = 'http://localhost:3000/api';  // Set this to your backend URL
+  private baseUrl = 'http://localhost:3000/api/orders';  // Set this to your backend URL
 
   constructor(private http: HttpClient) {}
 
@@ -34,5 +34,10 @@ export class OrderService {
   // Get a single order by ID
   getOrderById(orderId: string): Observable<Order> {
     return this.http.get<Order>(`${this.baseUrl}/orders/${orderId}`);
+  }
+
+  // Get orders by user ID
+  getOrdersByUserId(userId: string): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.baseUrl}/orders/user/${userId}`);
   }
 }

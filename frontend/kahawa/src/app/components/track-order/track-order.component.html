@@ -19,7 +19,7 @@
         <td [class.pending]="order.status === 'Pending'" [class.confirmed]="order.status === 'Confirmed'">
           {{ order.status }}
         </td>
-        <td>{{ order.date }}</td> 
+        <td>{{ order.date | date: 'shortDate' }}</td>  <!-- Format the date -->
         <td>
           <button (click)="cancelOrder(order.orderId)">Cancel Order</button>
         </td><!-- Additional field for order date -->

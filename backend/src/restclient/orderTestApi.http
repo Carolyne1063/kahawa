@@ -3,8 +3,8 @@ POST http://localhost:3000/api/orders/create-order
 Content-Type: application/json
 
 {
-    "userId": "36B35840-8B83-4327-AD3F-6CA0C8323F9C",
-    "productId": "e070174e-992d-4e0c-af63-17d6384eb0e6",
+    "userId": "3AFBFF76-8069-442A-B283-97FE37768357",
+    "productId": "3be4a39c-483f-4968-bc2c-b80219586bcb",
     "quantity": "10"
 }
 
@@ -17,10 +17,15 @@ Content-Type: application/json
 }
 
 ### Delete an Order
-DELETE http://localhost:3000/api/orders/5eacf47a-d0fe-4b70-979f-8ff695db9ab2
+DELETE http://localhost:3000/api/orders/a3ec5f5b-b69e-4960-abe5-c66cc28dd4f9
 
 ### Get All Orders
 GET http://localhost:3000/api/orders
 
 ### Get Order by ID
 GET http://localhost:3000/api/orders/5eacf47a-d0fe-4b70-979f-8ff695db9ab2
+
+
+###Get Orders for a specificuser by UserId
+GET http://localhost:3000/api/orders/user/3AFBFF76-8069-442A-B283-97FE37768357
+Content-Type: application/json

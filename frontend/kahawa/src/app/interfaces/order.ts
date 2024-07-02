@@ -7,6 +7,6 @@ export interface Order {
     flavor: string;
     name: string;
     status: string;   // Add status field
-    date: string;
+    date: Date;
     totalPrice?: number;
 }

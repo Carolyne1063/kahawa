@@ -1,9 +1,8 @@
-<!-- src/app/menu/menu.component.html -->
 <div class="dashboard">
     <div class="sidebar">
         <ul>
-            <li routerLink="">ADMIN</li>
-            <li routerLink="/menu" id="this">MENU</li>
+            <li routerLink="/admin">ADMIN</li>
+            <li routerLink="/menu-admin" id="this">MENU</li>
             <li routerLink="/orders">ORDERS</li>
             <li routerLink="/customers">CUSTOMERS</li>
             <li id="logout" routerLink="''">LOG OUT</li>
@@ -13,6 +12,18 @@
         <div class="bar">MENU</div>
         <div class="content">
             <div class="mycontent">
+                <button class="add-item-btn" (click)="toggleAddForm()">Add Item</button>
+                <form class="add-item-form" *ngIf="showAddForm">
+                    <h3>Add New Item</h3>
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" [(ngModel)]="newItem.image" name="image" accept="image/*">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" [(ngModel)]="newItem.name" name="name">
+                    <label for="ingredients">Ingredients:</label>
+                    <textarea id="ingredients" [(ngModel)]="newItem.ingredients" name="ingredients"></textarea>
+                    <button type="button" (click)="addItem()">Add</button>
+                    <button type="button" (click)="toggleAddForm()">Cancel</button>
+                </form>
                 <table class="menu-table">
                     <thead>
                         <tr>
@@ -35,7 +46,6 @@
                     </tbody>
                 </table>
             </div>
-            <button class="add-item-btn">Add Item</button>
         </div>
     </div> 
 </div>

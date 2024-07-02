@@ -1,3 +1,4 @@
+<!-- src/app/menu/menu.component.html -->
 <div class="dashboard">
     <div class="sidebar">
         <ul>
@@ -5,7 +6,7 @@
             <li routerLink="/menu" id="this">MENU</li>
             <li routerLink="/orders">ORDERS</li>
             <li routerLink="/customers">CUSTOMERS</li>
-            <li id="logout">LOG OUT</li>
+            <li id="logout" routerLink="''">LOG OUT</li>
         </ul>
     </div>
     <div class="container">
@@ -22,25 +23,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><img src="coffee.jpg" alt="Coffee" width="80"></td>
-                            <td>Latte</td>
-                            <td>Espresso, steamed milk</td>
+                        <tr *ngFor="let item of menuItems">
+                            <td><img [src]="item.image" [alt]="item.name" width="80"></td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.ingredients }}</td>
                             <td>
                                 <button class="update-btn">Update</button>
                                 <button class="delete-btn">Delete</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td><img src="cappuccino.jpg" alt="Cappuccino" width="80"></td>
-                            <td>Cappuccino</td>
-                            <td>Espresso, steamed milk, foam</td>
-                            <td>
-                                <button class="update-btn">Update</button>
-                                <button class="delete-btn">Delete</button>
-                            </td>
-                        </tr>
-                        <!-- Add more rows as needed -->
                     </tbody>
                 </table>
             </div>

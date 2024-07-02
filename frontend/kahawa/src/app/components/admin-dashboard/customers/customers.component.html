@@ -1,3 +1,4 @@
+<!-- src/app/customers/customers.component.html -->
 <div class="dashboard">
     <div class="sidebar">
         <ul>
@@ -22,25 +23,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>johndoe&#64;example.com</td>
+                        <tr *ngFor="let customer of customers">
+                            <td>{{ customer.id }}</td>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.email }}</td>
                             <td>
                                 <button class="delete-btn">Delete</button>
                                 <button class="update-btn">Update</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jane Smith</td>
-                            <td>janesmith&#64;example.com</td>
-                            <td>
-                                <button class="delete-btn">Delete</button>
-                                <button class="update-btn">Update</button>
-                            </td>
-                        </tr>
-                        <!-- Add more rows as needed -->
                     </tbody>
                 </table>
             </div>

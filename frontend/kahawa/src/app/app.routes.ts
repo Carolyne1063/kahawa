@@ -9,6 +9,9 @@ import { MenuComponent } from './components/menu/menu.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { TrackOrderComponent } from './components/track-order/track-order.component';
 import { AdminComponent } from './components/admin-dashboard/admin/admin.component';
+import { OrdersComponent } from './components/admin-dashboard/orders/orders.component';
+import { CustomersComponent } from './components/admin-dashboard/customers/customers.component';
+import { FormsComponent } from './components/forms/forms.component';
 
 
 
@@ -16,12 +19,18 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent },
 //   { path: 'login', component: LoginComponent },
 //   { path: 'register', component: RegisterComponent },
-  { path: 'admin', component:AdminComponent },
+  { path: 'admin', component:AdminComponent},
+    {path:'menu',component:MenuComponent},
+    {path:'orders',component:OrdersComponent},
+    {path:'customers',component:CustomersComponent}
+
+  ,
    {path:'user',component:UserDashboardComponent,children:[
     {path:'menu',component:MenuComponent},
     {path:'cart',component:ShoppingCartComponent},
     {path:'track-order',component:TrackOrderComponent}
   ]},
+  {path:'forms',component:FormsComponent},
 
   { path: '**', redirectTo: '' }
 ];

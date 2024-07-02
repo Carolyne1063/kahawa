@@ -1,0 +1,27 @@
+<div class="track-order">
+  <h1 class="title">Track Orders</h1>
+  <table class="orders-table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>Status</th>
+        <th>Date</th> <!-- Additional field for order date -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.item }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>${{ order.totalPrice.toFixed(2) }}</td>
+        <td [class.pending]="order.status === 'Pending'" [class.confirmed]="order.status === 'Confirmed'">
+          {{ order.status }}
+        </td>
+        <td>{{ order.date }}</td> <!-- Additional field for order date -->
+      </tr>
+    </tbody>
+  </table>
+</div>

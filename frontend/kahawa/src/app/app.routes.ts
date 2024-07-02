@@ -7,6 +7,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { TrackOrderComponent } from './components/track-order/track-order.component';
 
 
 
@@ -16,7 +18,9 @@ const routes: Routes = [
 //   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminDashboardComponent },
    {path:'user',component:UserDashboardComponent,children:[
-    {path:'menu',component:MenuComponent}
+    {path:'menu',component:MenuComponent},
+    {path:'cart',component:ShoppingCartComponent},
+    {path:'track-order',component:TrackOrderComponent}
   ]},
 
   { path: '**', redirectTo: '' }

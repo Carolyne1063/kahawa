@@ -1,0 +1,57 @@
+<div class="dashboard">
+    <div class="sidebar">
+        <ul>
+            <li routerLink="">ADMIN</li>
+            <li routerLink="/menu" id="this">MENU</li>
+            <li routerLink="/orders">ORDERS</li>
+            <li routerLink="/customers">CUSTOMERS</li>
+            <li id="logout">LOG OUT</li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="bar">MENU</div>
+        <div class="content">
+            <div class="mycontent">
+                <table class="menu-table">
+                    <thead>
+                        <tr>
+                            <th>IMAGE</th>
+                            <th>NAME</th>
+                            <th>INGREDIENTS</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="coffee.jpg" alt="Coffee" width="80"></td>
+                            <td>Latte</td>
+                            <td>Espresso, steamed milk</td>
+                            <td>
+                                <button class="update-btn">Update</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="cappuccino.jpg" alt="Cappuccino" width="80"></td>
+                            <td>Cappuccino</td>
+                            <td>Espresso, steamed milk, foam</td>
+                            <td>
+                                <button class="update-btn">Update</button>
+                                <button class="delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+            <button class="add-item-btn">Add Item</button>
+        </div>
+    </div> 
+</div>
+<div class="footer">
+    <ul>
+        <li>twitter</li>
+        <li>facebook</li>
+        <li>instagram</li>
+    </ul>
+</div>

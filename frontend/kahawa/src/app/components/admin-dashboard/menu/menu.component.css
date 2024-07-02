@@ -1,0 +1,160 @@
+.dashboard {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    height: 100vh;
+    min-height: 100vh; /* Ensure dashboard fills the viewport height */
+}
+
+.bar {
+    background-color: #754e14;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 24px;
+    border-bottom: 2px solid #967846;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: black;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+#this{
+    background-color: #754e14;
+}
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    height: 40px;
+    width: 90%;
+    border-radius: 8px;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar li:hover {
+    background-color: #967846;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Adjust margin top for content spacing */
+}
+
+.mycontent {
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll if content overflows */
+}
+
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.menu-table th, .menu-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #754e14;
+}
+
+.menu-table th {
+    background-color: #754e14;
+    color: #fff;
+}
+
+.menu-table tbody tr:nth-child(even) {
+    background-color: #000;
+}
+
+.menu-table tbody tr:nth-child(odd) {
+    background-color: #222;
+}
+
+.add-item-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #754e14;
+    color: #fff;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.add-item-btn:hover {
+    background-color: #967846;
+}
+
+.update-btn, .delete-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.update-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: #fff;
+}
+
+.update-btn:hover {
+    background-color: #45a049;
+}
+
+.delete-btn:hover {
+    background-color: #cc0000;
+}
+
+.footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer li {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 20px;
+    cursor: pointer;
+}

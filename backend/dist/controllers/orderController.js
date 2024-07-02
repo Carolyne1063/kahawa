@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOrderById = exports.getAllOrders = exports.deleteOrder = exports.updateOrder = exports.createOrder = void 0;
+exports.getOrdersByUserId = exports.getOrderById = exports.getAllOrders = exports.deleteOrder = exports.updateOrder = exports.createOrder = void 0;
 const orderService = __importStar(require("../services/orderService"));
 const getErrorMessage = (err) => {
     if (err instanceof Error) {
@@ -88,3 +88,13 @@ const getOrderById = async (req, res) => {
     }
 };
 exports.getOrderById = getOrderById;
+const getOrdersByUserId = async (req, res) => {
+    try {
+        const orders = await orderService.getOrdersByUserId(req.params.userId);
+        res.status(200).json(orders);
+    }
+    catch (err) {
+        res.status(500).json({ error: getErrorMessage(err) });
+    }
+};
+exports.getOrdersByUserId = getOrdersByUserId;

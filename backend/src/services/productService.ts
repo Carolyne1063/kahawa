@@ -65,11 +65,12 @@ export const getAllProducts = async (): Promise<Product[]> => {
     try {
         let pool = await sql.connect(sqlConfig);
         let result = await pool.request().execute('GetAllProducts');
-        return result.recordset;
+        return result.recordset.filter(product => product.stock > 0);  // Filter out products with zero stock
     } catch (err) {
         throw new Error(`Error fetching products: ${getErrorMessage(err)}`);
     }
 };
+
 
 export const getProductById = async (productId: string): Promise<Product> => {
     try {

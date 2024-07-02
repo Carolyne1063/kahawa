@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../../interfaces/order';
 import { OrderService } from '../../services/order.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -13,41 +14,37 @@ import { OrderService } from '../../services/order.service';
 })
 
 export class TrackOrderComponent {
-  orders: Order[] = [];  // Add this property to hold orders
+  orders: Order[] = [];
 
-  constructor(private orderService: OrderService) {}
+  constructor(
+    private orderService: OrderService,
+    private authService: AuthService  // Inject AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.loadOrders();
+    const userId = this.authService.getUserId();  // Fetch the logged-in user's ID
+    if (userId) {
+      this.getOrdersByUser(userId);
+    } else {
+      console.error('No user ID found. User may not be logged in.');
+    }
   }
 
-  // Load all orders
-  loadOrders(): void {
-    this.orderService.getAllOrders().subscribe(
-      (orders: Order[]) => {
+  getOrdersByUser(userId: string): void {
+    this.orderService.getOrdersByUserId(userId).subscribe({
+      next: (orders) => {
         this.orders = orders.map(order => ({
           ...order,
-          item: order.name,  // Set item as the product name
-          totalPrice: parseFloat(order.price),  // Convert price string to number for display
-          date: new Date().toLocaleDateString(),  // Placeholder for order date, adjust as needed
+          date: new Date(order.date),
+          totalPrice: parseFloat(order.price) * parseFloat(order.quantity)
         }));
       },
-      error => {
-        console.error('Error fetching orders:', error);
-      }
-    );
+      error: (error) => console.error('Error fetching orders:', error)
+    });
   }
 
-  // Cancel order method
   cancelOrder(orderId: string): void {
-    this.orderService.deleteOrder(orderId).subscribe(
-      () => {
-        this.loadOrders();  // Refresh the list of orders
-        console.log('Order canceled successfully');
-      },
-      error => {
-        console.error('Error canceling order:', error);
-      }
-    );
+    // Implement the cancel order functionality here
+    console.log(`Canceling order with ID: ${orderId}`);
   }
 }

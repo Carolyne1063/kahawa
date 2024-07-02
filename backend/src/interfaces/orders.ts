@@ -6,4 +6,6 @@ export interface Order {
     price: string;
     flavor: string;
     name: string;
+    status: string;
+    date: Date;
 }

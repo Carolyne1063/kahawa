@@ -8,11 +8,13 @@ CREATE PROCEDURE CreateOrder
     @name VARCHAR(255),
     @address VARCHAR(255),
     @phoneNumber VARCHAR(255),
-    @email VARCHAR(255)
+    @email VARCHAR(255),
+     @status VARCHAR(50),
+    @date DATETIME
 AS
 BEGIN
-    INSERT INTO orders (orderId, userId, productId, quantity, price, flavor, name, address, phoneNumber, email)
-    VALUES (@orderId, @userId, @productId, @quantity, @price, @flavor, @name, @address, @phoneNumber, @email);
+    INSERT INTO orders (orderId, userId, productId, quantity, price, flavor, name, address, phoneNumber, email, status, date)
+    VALUES (@orderId, @userId, @productId, @quantity, @price, @flavor, @name, @address, @phoneNumber, @email, @status, @date);
 END;
 GO
 

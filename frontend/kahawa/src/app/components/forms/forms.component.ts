@@ -1,7 +1,11 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';  // Import Router
+
+
+
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User, LoginDetails } from '../../interfaces/user';
@@ -19,11 +23,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class FormsComponent implements OnInit {
   registerForm: FormGroup;
   loginForm: FormGroup;
+  registerSuccessMessage: string | null = null;  // Add success message variables
+  loginSuccessMessage: string | null = null;
 
-  registerSuccessMessage: string | null = null;  // Add property for success message
-  loginSuccessMessage: string | null = null;  // Add property for success message
-
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {  // Inject Router
     this.registerForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -67,6 +70,9 @@ export class FormsComponent implements OnInit {
         response => {
           console.log('User registered successfully', response);
           this.registerSuccessMessage = 'Registration successful!';  // Set success message
+          setTimeout(() => {
+            this.router.navigate(['/forms']);
+          }, 4000);  // Redirect after 4 seconds
         },
         error => {
           console.error('Error registering user', error);
@@ -82,6 +88,18 @@ export class FormsComponent implements OnInit {
         response => {
           console.log('User logged in successfully', response);
           this.loginSuccessMessage = 'Login successful!';  // Set success message
+
+          // Store the token
+          localStorage.setItem('token', response.token);
+
+          // Redirect based on role after a delay
+          setTimeout(() => {
+            if (response.role === 'admin') {
+              this.router.navigate(['/admin']);
+            } else {
+              this.router.navigate(['/user']);
+            }
+          }, 2000);  // Redirect after 4 seconds
         },
         error => {
           console.error('Error logging in', error);

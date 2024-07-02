@@ -1,14 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Order } from '../../interfaces/order';
+import { OrderService } from '../../services/order.service';
 
-interface Order {
-  id: number;
-  item: string;
-  quantity: number;
-  totalPrice: number;
-  status: 'Pending' | 'Confirmed';
-  date: string;  // Additional field for order date
-}
 
 @Component({
   selector: 'app-track-order',
@@ -19,9 +13,41 @@ interface Order {
 })
 
 export class TrackOrderComponent {
-  orders: Order[] = [
-    { id: 1, item: 'Espresso', quantity: 2, totalPrice: 7.00, status: 'Pending', date: '2024-06-30' },
-    { id: 2, item: 'Cappuccino', quantity: 1, totalPrice: 4.00, status: 'Confirmed', date: '2024-06-29' },
-    { id: 3, item: 'Latte', quantity: 3, totalPrice: 13.50, status: 'Pending', date: '2024-06-28' }
-  ];
+  orders: Order[] = [];  // Add this property to hold orders
+
+  constructor(private orderService: OrderService) {}
+
+  ngOnInit(): void {
+    this.loadOrders();
+  }
+
+  // Load all orders
+  loadOrders(): void {
+    this.orderService.getAllOrders().subscribe(
+      (orders: Order[]) => {
+        this.orders = orders.map(order => ({
+          ...order,
+          item: order.name,  // Set item as the product name
+          totalPrice: parseFloat(order.price),  // Convert price string to number for display
+          date: new Date().toLocaleDateString(),  // Placeholder for order date, adjust as needed
+        }));
+      },
+      error => {
+        console.error('Error fetching orders:', error);
+      }
+    );
+  }
+
+  // Cancel order method
+  cancelOrder(orderId: string): void {
+    this.orderService.deleteOrder(orderId).subscribe(
+      () => {
+        this.loadOrders();  // Refresh the list of orders
+        console.log('Order canceled successfully');
+      },
+      error => {
+        console.error('Error canceling order:', error);
+      }
+    );
+  }
 }

@@ -12,6 +12,7 @@ import { AdminComponent } from './components/admin-dashboard/admin/admin.compone
 import { OrdersComponent } from './components/admin-dashboard/orders/orders.component';
 import { CustomersComponent } from './components/admin-dashboard/customers/customers.component';
 import { FormsComponent } from './components/forms/forms.component';
+import { MenuAdminComponent } from './components/admin-dashboard/menu-admin/menu-admin.component';
 
 
 
@@ -19,18 +20,20 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent },
 //   { path: 'login', component: LoginComponent },
   { path: 'forms', component: FormsComponent },
-  { path: 'admin', component:AdminComponent, children:[
-    {path: 'menu', component: MenuComponent},
-    {path: 'orders', component: OrdersComponent},
-    {path: 'customers', component: CustomersComponent},
-  ] },
+  // { path: 'admin', component:AdminComponent, children:[
+  //   {path: 'menu-admin', component: MenuAdminComponent},
+  //   {path: 'orders', component: OrdersComponent},
+  //   {path: 'customers', component: CustomersComponent},
+  // ] },
 //   { path: 'register', component: RegisterComponent },
-  { path: 'admin', component:AdminComponent},
-    {path:'menu',component:MenuComponent},
-    {path:'orders',component:OrdersComponent},
-    {path:'customers',component:CustomersComponent}
 
-  ,
+//ADMIN
+  { path: 'admin', component:AdminComponent},
+    {path:'menu-admin',component:MenuAdminComponent},
+    {path:'orders',component:OrdersComponent},
+    {path:'customers',component:CustomersComponent},
+//ADMIN
+  
    {path:'user',component:UserDashboardComponent,children:[
     {path:'menu',component:MenuComponent},
     {path:'cart',component:ShoppingCartComponent},

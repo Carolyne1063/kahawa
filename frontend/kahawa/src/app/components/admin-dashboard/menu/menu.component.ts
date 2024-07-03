@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterLink,AdminComponent,MenuComponent,OrdersComponent,FormsModule,CommonModule,RouterOutlet],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  // styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {
   menuItems: any[] = [];

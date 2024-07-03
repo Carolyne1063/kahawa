@@ -41,4 +41,4 @@ DELETE http://localhost:3000/api/users/A121D48B-F423-44CA-8547-52B13B15B9FE
 GET http://localhost:3000/api/users
 
 ### Get User by ID
-GET http://localhost:3000/api/users/7DA1B91C-C9C0-41D3-A1DF-0AD2C1593E99
+GET http://localhost:3000/api/users/BBFF8072-B5A3-47B1-9BC1-AD206C5995BC

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOrderById = exports.getAllOrders = exports.deleteOrder = exports.updateOrder = exports.createOrder = void 0;
+exports.getOrdersByUserId = exports.getOrderById = exports.getAllOrders = exports.deleteOrder = exports.updateOrder = exports.createOrder = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const uuid_1 = require("uuid");
 const sqlConfig_1 = require("../sqlConfig");
@@ -32,6 +32,8 @@ const createOrder = async (userId, productId, quantity) => {
             .input('address', mssql_1.default.VarChar, address) // Include address
             .input('phoneNumber', mssql_1.default.VarChar, phoneNumber) // Include phone number
             .input('email', mssql_1.default.VarChar, email) // Include email
+            .input('status', mssql_1.default.VarChar, 'Pending') // Default status
+            .input('date', mssql_1.default.DateTime, new Date()) // Set current date and time
             .execute('CreateOrder');
     }
     catch (err) {
@@ -100,3 +102,16 @@ const getOrderById = async (orderId) => {
     }
 };
 exports.getOrderById = getOrderById;
+const getOrdersByUserId = async (userId) => {
+    try {
+        let pool = await mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        let result = await pool.request()
+            .input('userId', mssql_1.default.VarChar, userId)
+            .execute('GetOrdersByUserId');
+        return result.recordset;
+    }
+    catch (err) {
+        throw new Error(`Error fetching orders for user: ${err instanceof Error ? err.message : 'An unknown error occurred'}`);
+    }
+};
+exports.getOrdersByUserId = getOrdersByUserId;

@@ -42,11 +42,12 @@ export class MenuAdminComponent implements OnInit {
               ingredients: ''
           };
       }
+    
   }
 
   addItem(): void {
       // Send HTTP POST request to add new item to backend
-      this.http.post<any>('http://localhost:3000/menuItems', this.newItem)
+      this.http.post<any>('http://localhost:3000/product', this.newItem)
           .subscribe(response => {
               // Assuming response contains the newly added item
               this.menuItems.push(response);
@@ -61,11 +62,21 @@ export class MenuAdminComponent implements OnInit {
               console.error('Error adding item:', error);
           });
   }
+  clearForm() {
+    // Implement logic to clear/reset form fields or states
+    // For example, reset newItem object
+    this.newItem = {
+      image: '',
+      name: '',
+      ingredients: ''
+    };
+  }
+
 
   fetchMenuItems(): void {
       // Fetch menu items from a mock API endpoint (replace with your actual backend URL)
       // For demo purpose using mock data
-      this.http.get<any[]>('http://localhost:3000/menuItems')
+      this.http.get<any[]>('http://localhost:3000/product')
           .subscribe(items => {
               this.menuItems = items;
           }, error => {

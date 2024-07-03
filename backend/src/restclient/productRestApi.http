@@ -3,13 +3,13 @@ POST http://localhost:3000/api/products/create-product
 Content-Type: application/json
 
 {
-    "name": "Viennesse Iced Coffee",
-    "short_description": "Vienna coffee is a delightful treat for coffee lovers. This coffee drink is typically prepared with a double espresso and topped with whisked whipped cream, then dusted with cocoa powder or chocolate shavings.",
-    "price": "5.00",
+    "name": "Cappuccino",
+    "short_description": "Cappuccino coffee is a delightful treat for coffee lovers. This coffee drink is typically prepared with a double espresso and topped with whisked whipped cream, then dusted with cocoa powder or chocolate shavings.",
+    "price": "10.00",
     "image": "https://i.pinimg.com/474x/b5/ec/65/b5ec650bd79c564223bbffc0a52b31f6.jpg",
-    "category": "Dessert",
-    "stock": "30",
-    "flavor": "Vienna Latte"
+    "category": "Appetizer",
+    "stock": "20",
+    "flavor": "Paris Latte"
 }
 
 ### Update a Product

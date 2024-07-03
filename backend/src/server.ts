@@ -48,9 +48,9 @@ app.get('/api/customers', (req, res) => {
   res.json({ count: 75 });
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });
 //CUSTOMERS
 
 const customers = [
@@ -63,9 +63,9 @@ const customers = [
     res.json(customers);
   });
   
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
+  // app.listen(port, () => {
+  //   console.log(`Server running at http://localhost:${port}`);
+  // });
 
   //MENU
 
@@ -79,9 +79,9 @@ const customers = [
     res.json(menuItems);
   });
   
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
+  // app.listen(port, () => {
+  //   console.log(`Server running at http://localhost:${port}`);
+  // });
 
   //ORDERS
   const orders = [
@@ -94,7 +94,7 @@ const customers = [
     res.json(orders);
   });
   
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  }
-);
+//   // app.listen(port, () => {
+//   //   console.log(`Server running at http://localhost:${port}`);
+//   // }
+// );

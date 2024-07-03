@@ -5,6 +5,7 @@ CREATE TABLE orders (
     quantity VARCHAR(255) NOT NULL,
     price VARCHAR(255) NOT NULL,
     flavor VARCHAR(255) NOT NULL,
+    
     name VARCHAR(255) NOT NULL,
     FOREIGN KEY (userId) REFERENCES users(userId),
     FOREIGN KEY (productId) REFERENCES products(productId)
@@ -17,6 +18,6 @@ ADD status VARCHAR(50) DEFAULT 'Pending',
     date DATETIME DEFAULT GETDATE();
 
 
-ALTER TABLE orders DROP COLUMN status;
+ALTER TABLE orders DROP COLUMN date;
 
 SELECT * FROM orders;

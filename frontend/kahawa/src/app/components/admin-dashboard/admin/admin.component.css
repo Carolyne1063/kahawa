@@ -1,16 +1,16 @@
 .dashboard {
-    background-color: #000; 
+    background-color: #333; 
     color: #fff; 
     display: flex;
-    height: 100vh;
-    
+    height: 90vh;
+    font-family: 'Arial', sans-serif;
 }
 
 .bar {
     background-color: #754e14; 
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
     font-size: 24px;
     border-bottom: 2px solid #967846;
     width: 100%; 
@@ -20,24 +20,28 @@
     display: flex;
     height: calc(100vh - 60px); 
 }
+
 #logout{
     background: #754e14;
     padding: 5px;
 }
+
 .sidebar {
     width: 250px;
-    background-color: black;
+    background-color: #222;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 .sidebar li {
@@ -47,22 +51,34 @@
     text-align: center;
     padding: 15px 0;
     font-size: 18px;
-    margin-top: 10px;
+    margin: 10px auto;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-#this{
-    background: #754e14;
+
+#this, #logout {
+    background: linear-gradient(135deg, #754e14, #967846);
     padding: 5px;
+    font-weight: bold;
 }
+
 .sidebar li:hover {
     background-color: #967846; 
+    transform: translateY(-3px);
+}
+
+.sidebar li.active {
+    background: linear-gradient(135deg, #754e14, #967846);
+    color: #fff;
+    font-weight: bold;
 }
 
 .container {
     flex: 1;
     display: flex;
-    
     align-items: center;
     flex-direction: column;
 }
@@ -90,15 +106,17 @@
     text-align: center;
     color: #fff; 
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cont:hover {
     background-color: #000;
+    transform: translateY(-5px);
 }
 
 .footer {
-    background-color: #000; 
+    background-color: #222; 
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -115,4 +133,9 @@
     margin: 0 10px;
     font-size: 20px;
     cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.footer li:hover {
+    color: #967846;
 }

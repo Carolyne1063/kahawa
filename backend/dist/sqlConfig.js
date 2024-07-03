@@ -26,9 +26,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sqlConfig = void 0;
 const sql = __importStar(require("mssql"));
 exports.sqlConfig = {
-    user: 'sa',
-    password: '123456',
-    server: 'DESKTOP-F8C0492',
+    user: 'ivan',
+    password: 'ivan',
+    server: 'IVAN',
     database: 'kahawa',
     pool: {
         max: 10,

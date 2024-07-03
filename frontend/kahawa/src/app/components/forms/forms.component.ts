@@ -17,10 +17,13 @@ export class FormsComponent implements OnInit {
   registerForm: FormGroup;
   loginForm: FormGroup;
 
+  registerSuccessMessage: string | null = null;  // Add property for success message
+  loginSuccessMessage: string | null = null;  // Add property for success message
+
   constructor(private fb: FormBuilder, private userService: UserService) {
     this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -54,6 +57,7 @@ export class FormsComponent implements OnInit {
       this.userService.register(user).subscribe(
         response => {
           console.log('User registered successfully', response);
+          this.registerSuccessMessage = 'Registration successful!';  // Set success message
         },
         error => {
           console.error('Error registering user', error);
@@ -68,6 +72,7 @@ export class FormsComponent implements OnInit {
       this.userService.login(loginDetails).subscribe(
         response => {
           console.log('User logged in successfully', response);
+          this.loginSuccessMessage = 'Login successful!';  // Set success message
         },
         error => {
           console.error('Error logging in', error);

@@ -138,6 +138,12 @@ small{
     color: red;
 }
 
+.text-success {
+    color: #28a745;
+    font-weight: bold;
+}
+  
+
 @keyframes show {
     0%, 49.99% {
         opacity: 0;

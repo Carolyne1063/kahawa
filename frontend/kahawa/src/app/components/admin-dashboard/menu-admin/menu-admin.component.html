@@ -12,8 +12,7 @@
         <div class="bar">MENU</div>
         <div class="content">
             <div class="mycontent">
-                <button class="add-item-btn" (click)="toggleAddForm()">Add Item</button>
-                <form class="add-item-form" *ngIf="showAddForm">
+                <form class="add-item-form">
                     <h3>Add New Item</h3>
                     <label for="image">Image:</label>
                     <input type="file" id="image" [(ngModel)]="newItem.image" name="image" accept="image/*">
@@ -21,8 +20,8 @@
                     <input type="text" id="name" [(ngModel)]="newItem.name" name="name">
                     <label for="ingredients">Ingredients:</label>
                     <textarea id="ingredients" [(ngModel)]="newItem.ingredients" name="ingredients"></textarea>
-                    <button type="button" (click)="addItem()">Add</button>
-                    <button type="button" (click)="toggleAddForm()">Cancel</button>
+                    <button type="button" class="add-btn" (click)="addItem()">Add</button>
+                    <button type="button" class="cancel-btn" (click)="clearForm()">Cancel</button>
                 </form>
                 <table class="menu-table">
                     <thead>

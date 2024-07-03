@@ -24,9 +24,9 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Internal Server Error' });
 });
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`Server is running on http://localhost:${port}`);
+// });
 app.get('/api/coffee-types', (req, res) => {
     // Fetch number of coffee types from the database
     res.json({ count: 10 });
@@ -39,9 +39,9 @@ app.get('/api/customers', (req, res) => {
     // Fetch number of customers from the database
     res.json({ count: 75 });
 });
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });
 //CUSTOMERS
 const customers = [
     { id: 1, name: 'John Doe', email: 'johndoe@example.com' },
@@ -51,9 +51,9 @@ const customers = [
 app.get('/api/customers', (req, res) => {
     res.json(customers);
 });
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });
 //MENU
 const menuItems = [
     { id: 1, image: 'coffee.jpg', name: 'Latte', ingredients: 'Espresso, steamed milk' },
@@ -63,9 +63,9 @@ const menuItems = [
 app.get('/api/menu', (req, res) => {
     res.json(menuItems);
 });
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });
 //ORDERS
 const orders = [
     { id: 101, item: 'Product A', customerId: 1, name: 'John Doe', address: '123 Street, City', tel: '123-456-7890', status: 'Confirmed' },

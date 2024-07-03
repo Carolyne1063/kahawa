@@ -13,13 +13,13 @@ Content-Type: application/json
 }
 
 ### Update a Product
-PUT http://localhost:3000/api/products/e070174e-992d-4e0c-af63-17d6384eb0e6
+PUT http://localhost:3000/api/products/9658a776-7970-4157-b3e5-974f8f5cd3c8
 Content-Type: application/json
 
 {
     "name": "Espresso",
     "short_description": "A strong concentrated coffee drink typically served in a small espresso cup.",
-    "price": "5.50",
+    "price": "6.50",
     "image": "https://i.pinimg.com/474x/a8/c3/30/a8c330fd5cced864f4b300c7afabdd40.jpg",
     "category": "Espresso",
     "stock": "70",
@@ -33,4 +33,4 @@ DELETE http://localhost:3000/api/products/b3423c9d-bd30-4fb0-8b6c-bd02e6418b22
 GET http://localhost:3000/api/products
 
 ### Get Product by ID
-GET http://localhost:3000/api/products/8d3b193b-e672-458c-becc-c749f5bc1b30
+GET http://localhost:3000/api/products/dd791e8e-f682-404d-bbf4-1a8274129c7e

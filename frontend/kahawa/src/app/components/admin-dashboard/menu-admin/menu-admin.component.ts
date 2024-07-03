@@ -65,9 +65,10 @@ export class MenuAdminComponent implements OnInit {
   fetchMenuItems(): void {
       // Fetch menu items from a mock API endpoint (replace with your actual backend URL)
       // For demo purpose using mock data
-      this.http.get<any[]>('http://localhost:3000/menuItems')
+      this.http.get<any[]>('http://localhost:3000/api/products')
           .subscribe(items => {
               this.menuItems = items;
+              console.log(items)
           }, error => {
               console.error('Error fetching menu items:', error);
           });

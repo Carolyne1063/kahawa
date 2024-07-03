@@ -1,10 +1,13 @@
 import * as sql from 'mssql';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 export const sqlConfig = {
-  user: 'sa',
-  password: '123456',
-  server: 'DESKTOP-F8C0492',
-  database: 'kahawa',
+  user: process.env.DB_USER as string,
+  password: process.env.DB_PASSWORD as string,
+  server: process.env.DB_SERVER as string,
+  database: process.env.DB_NAME as string,
   pool: {
     max: 10,
     min: 0,

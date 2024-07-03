@@ -10,13 +10,16 @@ CREATE TABLE orders (
     FOREIGN KEY (productId) REFERENCES products(productId)
 );
 
-ALTER TABLE orders ADD date DATETIME;
+-- ALTER TABLE orders ADD date DATETIME;
 
 ALTER TABLE orders
 ADD status VARCHAR(50) DEFAULT 'Pending',
-    date DATETIME DEFAULT GETDATE();
+    date DATETIME DEFAULT GETDATE(),
+    address VARCHAR(255),
+    email VARCHAR(255),
+    phoneNumber VARCHAR(255);
 
 
-ALTER TABLE orders DROP COLUMN status;
+-- ALTER TABLE orders DROP COLUMN status;
 
-SELECT * FROM orders;
+-- SELECT * FROM orders;

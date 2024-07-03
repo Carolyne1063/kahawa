@@ -32,8 +32,13 @@ export class OrdersComponent implements OnInit {
 
   loadOrders(): void {
     this.orderService.getOrders().subscribe(data => {
+      console.log(data);
       this.orders = data;
     });
+  }
+
+  shortenId(id: string): string {
+    return id.substring(0, 8);
   }
 
 

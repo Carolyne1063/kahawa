@@ -28,12 +28,12 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let order of orders">
-                            <td>{{ order.id }}</td>
-                            <td>{{ order.item }}</td>
-                            <td>{{ order.customerId }}</td>
+                            <td>{{ shortenId(order.orderId) }}</td>
+                            <td>{{ shortenId( order.productId ) }}</td>
+                            <td>{{ shortenId(order.userId )}}</td>
                             <td>{{ order.name }}</td>
                             <td>{{ order.address }}</td>
-                            <td>{{ order.tel }}</td>
+                            <td>{{ order.phoneNumber }}</td>
                             <td>{{ order.status }}</td>
                             <td>
                                 <button class="delete-btn">Delete</button>

@@ -83,7 +83,8 @@
 .cont {
     width: 30%;
     height: 200px;
-    background-color: #754e14; 
+    /* background-color: #754e14;  */
+    background-color: #313131;
     border-radius: 10px;
     margin: 20px 10px;
     padding: 20px;
@@ -94,7 +95,7 @@
 }
 
 .cont:hover {
-    background-color: #000;
+    background-color: #754e14;
 }
 
 .footer {

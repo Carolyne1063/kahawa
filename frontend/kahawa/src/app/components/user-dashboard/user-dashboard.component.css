@@ -36,10 +36,16 @@
 .nav-links {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  width: 90%;
 }
 
 .nav-links a, .nav-links p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   text-align: center;
   padding: 10px;
   margin: 5px 0;
@@ -49,6 +55,17 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.logout-button {
+  margin-top: 200px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #754E14;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .nav-links a:hover, .logout-button:hover {

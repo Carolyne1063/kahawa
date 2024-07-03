@@ -34,11 +34,11 @@ export class AdminComponent implements OnInit {
     });
 
     this.adminService.getOrders().subscribe(data => {
-      this.ordersCount = data.count;
+      this.ordersCount = data.length;
     });
 
     this.adminService.getCustomers().subscribe(data => {
-      this.customersCount = data.count;
+      this.customersCount = data.length;
     });
 
   }}

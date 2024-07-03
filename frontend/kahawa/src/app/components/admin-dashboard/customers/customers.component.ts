@@ -7,7 +7,7 @@ import { CustomerService } from '../../../services/customer.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
-
+import { MenuComponent } from '../../menu/menu.component';
 
 
 @Component({
@@ -29,7 +29,12 @@ export class CustomersComponent implements OnInit {
 
   loadCustomers(): void {
     this.customerService.getCustomers().subscribe(data => {
+      console.log(data)
       this.customers = data;
     });
+  }
+
+  shortenId(id: string): string {
+    return id.substring(0, 8);
   }
 }

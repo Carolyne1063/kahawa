@@ -10,6 +10,8 @@ const productRoutes_1 = __importDefault(require("./routers/productRoutes"));
 const orderRoutes_1 = __importDefault(require("./routers/orderRoutes"));
 const cartRoutes_1 = __importDefault(require("./routers/cartRoutes"));
 const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = 3000;
 app.use(body_parser_1.default.json());
@@ -19,13 +21,12 @@ app.use('/api/users', userRoutes_1.default);
 app.use('/api', productRoutes_1.default);
 app.use('/api', orderRoutes_1.default);
 app.use('/cart', cartRoutes_1.default);
-// Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Internal Server Error' });
 });
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });
 app.get('/api/coffee-types', (req, res) => {
     // Fetch number of coffee types from the database

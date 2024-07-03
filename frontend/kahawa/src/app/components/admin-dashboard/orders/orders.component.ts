@@ -1,10 +1,6 @@
-
-
 import { RouterLink } from '@angular/router';
-
 import { AdminComponent } from '../admin/admin.component';
 import { CustomersComponent } from '../customers/customers.component';
-// src/app/orders/orders.component.ts
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../../services/orders.service';
 import { FormsModule } from '@angular/forms';
@@ -32,8 +28,13 @@ export class OrdersComponent implements OnInit {
 
   loadOrders(): void {
     this.orderService.getOrders().subscribe(data => {
+      console.log(data);
       this.orders = data;
     });
+  }
+
+  shortenId(id: string): string {
+    return id.substring(0, 8);
   }
 
 

@@ -8,9 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class OrderService {
 
+  private baseUrl = 'http://localhost:3000/api';
   constructor(private http: HttpClient) { }
 
   getOrders(): Observable<any> {
-    return this.http.get('/api/orders');
+    return this.http.get(`${this.baseUrl}/orders`);
   }
 }

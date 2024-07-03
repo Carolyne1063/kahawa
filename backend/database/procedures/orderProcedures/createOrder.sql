@@ -18,4 +18,4 @@ BEGIN
 END;
 GO
 
-DROP PROCEDURE CreateOrder;
+-- DROP PROCEDURE CreateOrder;

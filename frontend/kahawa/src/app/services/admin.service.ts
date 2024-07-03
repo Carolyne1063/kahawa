@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
 
+  private baseUrl = 'http://localhost:3000/api';
   constructor(private http: HttpClient) { }
 
   getCoffeeTypes(): Observable<any> {
@@ -15,10 +16,10 @@ export class AdminService {
   }
 
   getOrders(): Observable<any> {
-    return this.http.get('/api/orders');
+    return this.http.get(`${this.baseUrl}/orders`);
   }
 
   getCustomers(): Observable<any> {
-    return this.http.get('/api/customers');
+    return this.http.get(`${this.baseUrl}/users`);
   }
 }

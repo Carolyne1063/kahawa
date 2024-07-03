@@ -7,10 +7,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CustomerService {
+  private baseUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
 
   getCustomers(): Observable<any> {
-    return this.http.get('/api/customers');
+    return this.http.get(`${this.baseUrl}/users`);
   }
 }

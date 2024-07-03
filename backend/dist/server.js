@@ -10,6 +10,8 @@ const productRoutes_1 = __importDefault(require("./routers/productRoutes"));
 const orderRoutes_1 = __importDefault(require("./routers/orderRoutes"));
 const cartRoutes_1 = __importDefault(require("./routers/cartRoutes"));
 const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = 3000;
 app.use(body_parser_1.default.json());

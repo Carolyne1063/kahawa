@@ -5,6 +5,10 @@ import productRoutes from './routers/productRoutes';
 import orderRoutes from './routers/orderRoutes';
 import cartRoutes from './routers/cartRoutes'; 
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+
+dotenv.config()
 
 const app = express();
 const port = 3000;

@@ -3,15 +3,15 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-  "firstname": "  Whitney",
-  "lastname": "Navalia",
-  "phoneNumber": "0111997934",
+  "firstname": "Stanley",
+  "lastname": "Nyakinda",
+  "phoneNumber": "0740837666",
   "address": "Chuka",
-  "email": "whitney@example.com",
+  "email": "stanley@example.com",
   "password": "password123"
 }
 
-### Login User
+### Login User ( admin )
 POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
@@ -20,18 +20,26 @@ Content-Type: application/json
   "password": "adminpassword"
 }
 
-### Update User
-PUT http://localhost:3000/api/users/F6C89196-799B-4D45-A4D1-8B1657C10069
+### Login User ( user )
+POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-  "firstname": "John",
-  "lastname": "Doe",
-  "phoneNumber": "123456789",
-  "address": "dfghj",
-  "email": "dfghjk@example.com",
-  "password": "edrfghjk"
+  "email": "stanley@example.com",
+  "password": "password123"
+}
 
+### Update User
+PUT http://localhost:3000/api/users/F31E6569-BE8F-45C9-A67F-BCB8CE7B96B3
+Content-Type: application/json
+
+{
+  "firstname": "Stanley",
+  "lastname": "Nyakinda",
+  "phoneNumber": "0740837669",
+  "address": "Chuka",
+  "email": "stanley@example.com",
+  "password": "password123"
 }
 
 ### Delete User
@@ -41,4 +49,5 @@ DELETE http://localhost:3000/api/users/A121D48B-F423-44CA-8547-52B13B15B9FE
 GET http://localhost:3000/api/users
 
 ### Get User by ID
-GET http://localhost:3000/api/users/BBFF8072-B5A3-47B1-9BC1-AD206C5995BC
+GET http://localhost:3000/api/users/F31E6569-BE8F-45C9-A67F-BCB8CE7B96B3
+

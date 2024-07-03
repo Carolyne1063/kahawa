@@ -1,16 +1,40 @@
-import { Component } from '@angular/core';
+
+
 import { RouterLink } from '@angular/router';
-import { MenuComponent } from '../menu/menu.component';
+
 import { AdminComponent } from '../admin/admin.component';
 import { CustomersComponent } from '../customers/customers.component';
+// src/app/orders/orders.component.ts
+import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../../../services/orders.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
+
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [RouterLink,MenuComponent,AdminComponent,CustomersComponent],
+  imports: [RouterLink,MenuAdminComponent,AdminComponent,CustomersComponent,FormsModule,CommonModule],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
 })
-export class OrdersComponent {
+
+
+export class OrdersComponent implements OnInit {
+  orders: any[] = [];
+
+  constructor(private orderService: OrderService) { }
+
+  ngOnInit(): void {
+    this.loadOrders();
+  }
+
+  loadOrders(): void {
+    this.orderService.getOrders().subscribe(data => {
+      this.orders = data;
+    });
+  }
+
 
 }

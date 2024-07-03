@@ -3,11 +3,11 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-  "firstname": "Carolynevjnk",
-  "lastname": "Musenyabjnk",
-  "phoneNumber": "0111997534",
+  "firstname": "  Whitney",
+  "lastname": "Navalia",
+  "phoneNumber": "0111997934",
   "address": "Chuka",
-  "email": "carolnkijk@example.com",
+  "email": "whitney@example.com",
   "password": "password123"
 }
 
@@ -35,7 +35,7 @@ Content-Type: application/json
 }
 
 ### Delete User
-DELETE http://localhost:3000/api/users/F6C89196-799B-4D45-A4D1-8B1657C10069
+DELETE http://localhost:3000/api/users/A121D48B-F423-44CA-8547-52B13B15B9FE
 
 ### Get All Users
 GET http://localhost:3000/api/users

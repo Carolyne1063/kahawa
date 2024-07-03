@@ -1,29 +1,30 @@
+
 <div class="dashboard">
     <div class="sidebar">
-        <ul>
-            <li routerLink="admin"id="this">ADMIN</li>
-            <li routerLink="menu">MENU</li>
-            <li routerLink="orders">ORDERS</li>
-            <li routerLink="customers">CUSTOMERS</li>
-            <li id="logout" routerLink="/forms">LOG OUT</li>
-        </ul>
+      <ul>
+        <li routerLink="/admin" id="this">ADMIN</li>
+        <li routerLink="/menu-admin">MENU</li>
+        <li routerLink="/orders">ORDERS</li>
+        <li routerLink="/customers">CUSTOMERS</li>
+        <li id="logout" routerLink="''">LOG OUT</li>
+      </ul>
     </div>
     <div class="container">
-        <div class="bar">ADMIN</div>
-        <div class="content">
-            
-            <div class="mycontent">
-                <div class="cont menu">KAHAWA MENU</div>
-                <div class="cont orders">CUSTOMER ORDERS</div>
-                <div class="cont customers">OUR CUSTOMERS</div>
-            </div>
+      <div class="bar">ADMIN</div>
+      <div class="content">
+        <div class="mycontent">
+          <div class="cont menu">KAHAWA MENU: {{ coffeeTypesCount }}</div>
+          <div class="cont orders">CUSTOMER ORDERS: {{ ordersCount }}</div>
+          <div class="cont customers">OUR CUSTOMERS: {{ customersCount }}</div>
         </div>
-    </div> 
-</div>
-<div class="footer">
+      </div>
+    </div>
+  </div>
+  <div class="footer">
     <ul>
-        <li>twitter</li>
-        <li>facebook</li>
-        <li>instagram</li>
+      <li>twitter</li>
+      <li>facebook</li>
+      <li>instagram</li>
     </ul>
-</div>
+  </div>
+  

@@ -95,7 +95,6 @@ export class ShoppingCartComponent implements OnInit {
       alert('Please fill in all required fields.');
     }
   }
-  
 
   resetForm() {
     this.name = '';
@@ -104,5 +103,35 @@ export class ShoppingCartComponent implements OnInit {
     this.productName = '';
     this.quantity = '';
     this.selectedItem = null;
+  }
+
+  removeItem(cartId: string, productId: string) {
+    const userId = this.authService.getUserId();
+    if (userId) {
+      this.cartService.removeItemFromCart(cartId, userId, productId).subscribe(
+        () => {
+          this.loadCartItems(); // Refresh cart items
+        },
+        (error) => {
+          console.error('Error removing item from cart:', error);
+          alert('Failed to remove item from cart.');
+        }
+      );
+    }
+  }
+
+  clearCart() {
+    const userId = this.authService.getUserId();
+    if (userId) {
+      this.cartService.clearCart(userId).subscribe(
+        () => {
+          this.loadCartItems(); // Refresh cart items
+        },
+        (error) => {
+          console.error('Error clearing cart:', error);
+          alert('Failed to clear cart.');
+        }
+      );
+    }
   }
 }

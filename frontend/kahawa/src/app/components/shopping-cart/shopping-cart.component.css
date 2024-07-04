@@ -88,3 +88,12 @@ input {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.remove-btn, .remove-all-btn, .order{
+  background-color: #754E14;
+  color: white;
+  padding: 8px;
+}
+
+
+

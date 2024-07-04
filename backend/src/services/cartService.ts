@@ -93,6 +93,7 @@ export const removeItemFromCart = async (cartId: string, userId: string, product
     try {
         let pool = await sql.connect(sqlConfig);
 
+        // Fetch current quantity of the item in the cart
         const cartResult = await pool.request()
             .input('cartId', sql.VarChar, cartId)
             .query('SELECT quantity FROM cart WHERE cartId = @cartId');
@@ -103,6 +104,7 @@ export const removeItemFromCart = async (cartId: string, userId: string, product
 
         const quantity = cartResult.recordset[0].quantity;
 
+        // Fetch current stock of the product
         const productResult = await pool.request()
             .input('productId', sql.VarChar, productId)
             .query('SELECT stock FROM products WHERE productId = @productId');
@@ -119,10 +121,14 @@ export const removeItemFromCart = async (cartId: string, userId: string, product
         try {
             await transaction.begin();
 
+            // Remove the item from the cart
             await transaction.request()
                 .input('cartId', sql.VarChar, cartId)
+                .input('userId', sql.VarChar, userId)
+                .input('productId', sql.VarChar, productId)
                 .execute('RemoveItemFromCart');
 
+            // Update the stock of the product
             await transaction.request()
                 .input('productId', sql.VarChar, productId)
                 .input('newStock', sql.Int, newStock)

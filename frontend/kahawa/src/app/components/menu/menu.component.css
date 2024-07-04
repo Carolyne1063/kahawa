@@ -1,7 +1,7 @@
 .menu {
   padding: 20px;
   color: #fff;
-  height: fit-content;
+  height: auto;
 }
 
 .search-bar {

@@ -35,7 +35,7 @@ export class TrackOrderComponent {
       next: (orders) => {
         this.orders = orders.map(order => ({
           ...order,
-          date: new Date(order.date),
+          // date: new Date(order.date),
           totalPrice: parseFloat(order.price) * parseFloat(order.quantity)
         }));
       },

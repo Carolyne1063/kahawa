@@ -13,31 +13,31 @@ export class OrderService {
 
   // Create a new order
   createOrder(userId: string, productId: string, quantity: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/orders/create-order`, { userId, productId, quantity });
+    return this.http.post(`${this.baseUrl}/create-order`, { userId, productId, quantity });
   }
 
   // Update an existing order
-  updateOrder(orderId: string, quantity: string): Observable<any> {
-    return this.http.put(`${this.baseUrl}/orders/${orderId}`, { quantity });
+  updateOrder(orderId: string, update: { status?: string, quantity?: string }): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${orderId}`, update);
   }
 
   // Delete an order
   deleteOrder(orderId: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/orders/${orderId}`);
+    return this.http.delete(`${this.baseUrl}/${orderId}`, { responseType: 'text' });
   }
 
   // Get all orders
   getAllOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.baseUrl}/orders`);
+    return this.http.get<Order[]>(`${this.baseUrl}`);
   }
 
   // Get a single order by ID
   getOrderById(orderId: string): Observable<Order> {
-    return this.http.get<Order>(`${this.baseUrl}/orders/${orderId}`);
+    return this.http.get<Order>(`${this.baseUrl}/${orderId}`);
   }
 
   // Get orders by user ID
   getOrdersByUserId(userId: string): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.baseUrl}/orders/user/${userId}`);
+    return this.http.get<Order[]>(`${this.baseUrl}/user/${userId}`);
   }
 }

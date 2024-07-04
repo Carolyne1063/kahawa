@@ -1,78 +1,110 @@
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { AdminComponent } from '../admin/admin.component';
-import { OrdersComponent } from '../orders/orders.component';
 import { Component, OnInit } from '@angular/core';
-import { MenuService } from '../../../services/menu.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { ProductService } from '../../../services/product.service';  // Import the ProductService
+import { Product } from '../../../interfaces/product';  // Import the Product interface
+import { v4 as uuidv4 } from 'uuid'; 
 
 @Component({
   selector: 'app-menu-admin',
   standalone: true,
-  imports: [RouterLink,FormsModule,CommonModule,RouterOutlet],
+  imports: [RouterLink, FormsModule, CommonModule, RouterOutlet],
   templateUrl: './menu-admin.component.html',
   styleUrl: './menu-admin.component.css'
 })
 export class MenuAdminComponent implements OnInit {
-  menuItems: any[] = [];
+  menuItems: Product[] = [];
   showAddForm: boolean = false;
-  newItem: any = {
-      image: '',
-      name: '',
-      ingredients: ''
+  isEditing: boolean = false; // To track if we are in edit mode
+  newItem: Product = {
+    productId: '',
+    name: '',
+    short_description: '',
+    price: '',
+    image: '',
+    category: '',
+    stock: '',
+    flavor: ''
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-      // Fetch existing menu items from backend on component initialization
-      this.fetchMenuItems();
+    this.fetchMenuItems();
   }
 
   toggleAddForm(): void {
-    console.log("clicked");
-    
-      this.showAddForm = !this.showAddForm;
-      // Reset form fields when toggling
-      if (!this.showAddForm) {
-          this.newItem = {
-              image: '',
-              name: '',
-              ingredients: ''
-          };
-      }
+    this.showAddForm = !this.showAddForm;
+    if (!this.showAddForm) {
+      this.newItem = {
+        productId: '',
+        name: '',
+        short_description: '',
+        price: '',
+        image: '',
+        category: '',
+        stock: '',
+        flavor: ''
+      };
+      this.isEditing = false; 
+    }
   }
 
   addItem(): void {
-      // Send HTTP POST request to add new item to backend
-      this.http.post<any>('http://localhost:3000/menuItems', this.newItem)
-          .subscribe(response => {
-              // Assuming response contains the newly added item
-              this.menuItems.push(response);
-              // Reset form and hide it after successful addition
-              this.newItem = {
-                  image: '',
-                  name: '',
-                  ingredients: ''
-              };
-              this.showAddForm = false;
-          }, error => {
-              console.error('Error adding item:', error);
-          });
+    this.productService.createProduct(this.newItem).subscribe(
+      response => {
+        console.log(response);
+        this.fetchMenuItems();
+        this.toggleAddForm();
+      },
+      error => {
+        console.error('Error adding item:', error);
+      }
+    );
   }
 
   fetchMenuItems(): void {
-      // Fetch menu items from a mock API endpoint (replace with your actual backend URL)
-      // For demo purpose using mock data
-      this.http.get<any[]>('http://localhost:3000/api/products')
-          .subscribe(items => {
-              this.menuItems = items;
-              console.log(items)
-          }, error => {
-              console.error('Error fetching menu items:', error);
-          });
+    this.productService.getAllProducts().subscribe(
+      items => {
+        this.menuItems = items;
+      },
+      error => {
+        console.error('Error fetching menu items:', error);
+      }
+    );
+  }
+
+  editItem(item: Product): void {
+    // Open the form and set the item to be edited
+    this.newItem = { ...item };
+    this.showAddForm = true;
+    this.isEditing = true; // Set editing mode
+  }
+
+  updateItem(): void {
+    this.productService.updateProduct(this.newItem.productId, this.newItem).subscribe(
+      response => {
+        console.log(response);
+        this.fetchMenuItems();
+        this.toggleAddForm();
+      },
+      error => {
+        console.error('Error updating item:', error);
+      }
+    );
+  }
+
+  deleteItem(productId: string): void {
+    this.productService.deleteProduct(productId).subscribe(
+      response => {
+        console.log(response);
+        this.fetchMenuItems();
+      },
+      error => {
+        console.error('Error deleting item:', error);
+      }
+    );
   }
 }
-  
-

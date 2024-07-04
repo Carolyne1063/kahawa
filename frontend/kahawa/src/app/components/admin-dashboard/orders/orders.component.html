@@ -1,55 +1,63 @@
-<!-- src/app/orders/orders.component.html -->
 <div class="dashboard">
     <div class="sidebar">
-        <ul>
-            <li routerLink="/admin">ADMIN</li>
-            <li routerLink="/menu-admin">MENU</li>
-            <li routerLink="/orders" id="this">ORDERS</li>
-            <li routerLink="/customers">CUSTOMERS</li>
-            <li id="logout" routerLink="''">LOG OUT</li>
-        </ul>
+      <ul>
+        <li routerLink="/admin" id="this">ADMIN</li>
+        <br><hr>
+        <li routerLink="/menu-admin">MENU</li>
+        <br><hr>
+        <li routerLink="/orders">ORDERS</li>
+        <br><hr>
+        <li routerLink="/customers">CUSTOMERS</li>
+        <br><hr><br><br>
+        <li id="logout" routerLink="''">LOG OUT</li>
+      </ul>
     </div>
     <div class="container">
-        <div class="bar">ORDERS</div>
-        <div class="content">
-            <div class="mycontent">
-                <table class="order-table">
-                    <thead>
-                        <tr>
-                            <th>ORDER ID</th>
-                            <th>ITEM</th>
-                            <th>CUSTOMER ID</th>
-                            <th>NAME</th>
-                            <th>ADDRESS</th>
-                            <th>TEL</th>
-                            <th>STATUS</th>
-                            <th>ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let order of orders">
-                            <td>{{ shortenId(order.orderId) }}</td>
-                            <td>{{ shortenId( order.productId ) }}</td>
-                            <td>{{ shortenId(order.userId )}}</td>
-                            <td>{{ order.name }}</td>
-                            <td>{{ order.address }}</td>
-                            <td>{{ order.phoneNumber }}</td>
-                            <td>{{ order.status }}</td>
-                            <td>
-                                <button class="delete-btn">Delete</button>
-                                <button class="update-btn">Update</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      <div class="bar">ORDERS</div>
+      <div class="content">
+        <div class="mycontent">
+          <table class="order-table">
+            <thead>
+              <tr>
+                <th>ORDER ID</th>
+                <th>CUSTOMER ID</th>
+                <th>PRODUCT NAME</th>
+                <th>QUANTITY</th>
+                <th>ADDRESS</th>
+                <th>TEL</th>
+                <th>STATUS</th>
+                <th>ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders">
+                <td>{{ shortenId(order.orderId) }}</td>
+                <td>{{ shortenId(order.userId) }}</td>
+                <td>{{ order.name }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.address }}</td>
+                <td>{{ order.phoneNumber }}</td>
+                <td>
+                  <ng-container *ngIf="!order.editingStatus">
+                    {{ order.status }}
+                    <button class="update-btn" (click)="editOrderStatus(order)">Edit</button>
+                  </ng-container>
+                  <ng-container *ngIf="order.editingStatus">
+                    <form (ngSubmit)="updateOrderStatus(order)">
+                      <input type="text" [(ngModel)]="order.status" name="status" required>
+                      <button type="submit">Update</button>
+                    </form>
+                    <button (click)="cancelUpdate(order)">Cancel</button>
+                  </ng-container>
+                </td>
+                <td>
+                  <button class="delete-btn" (click)="deleteOrder(order.orderId)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div> 
-</div>
-<div class="footer">
-    <ul>
-        <li>twitter</li>
-        <li>facebook</li>
-        <li>instagram</li>
-    </ul>
-</div>
+  </div>
+  

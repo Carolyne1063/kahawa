@@ -1,58 +1,71 @@
 <div class="dashboard">
     <div class="sidebar">
         <ul>
-            <li routerLink="/admin">ADMIN</li>
-            <li routerLink="/menu-admin" id="this">MENU</li>
-            <li routerLink="/orders">ORDERS</li>
-            <li routerLink="/customers">CUSTOMERS</li>
-            <li id="logout" routerLink="''">LOG OUT</li>
+          <li routerLink="/admin" id="this">ADMIN</li>
+          <br><hr>
+          <li routerLink="/menu-admin">MENU</li>
+          <br><hr>
+          <li routerLink="/orders">ORDERS</li>
+          <br><hr>
+          <li routerLink="/customers">CUSTOMERS</li>
+          <br><hr><br><br>
+          <li id="logout" routerLink="''">LOG OUT</li>
         </ul>
-    </div>
+      </div>
     <div class="container">
-        <div class="bar">MENU</div>
-        <div class="content">
-            <div class="mycontent">
-                <button class="add-item-btn" (click)="toggleAddForm()">Add Item</button>
-                <form class="add-item-form" *ngIf="showAddForm">
-                    <h3>Add New Item</h3>
-                    <label for="image">Image:</label>
-                    <input type="file" id="image" [(ngModel)]="newItem.image" name="image" accept="image/*">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" [(ngModel)]="newItem.name" name="name">
-                    <label for="ingredients">Ingredients:</label>
-                    <textarea id="ingredients" [(ngModel)]="newItem.ingredients" name="ingredients"></textarea>
-                    <button type="button" (click)="addItem()">Add</button>
-                    <button type="button" (click)="toggleAddForm()">Cancel</button>
-                </form>
-                <table class="menu-table">
-                    <thead>
-                        <tr>
-                            <th>IMAGE</th>
-                            <th>NAME</th>
-                            <th>INGREDIENTS</th>
-                            <th>ACTIONS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of menuItems">
-                            <td><img [src]="item.image" [alt]="item.name" width="80"></td>
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.short_description }}</td>
-                            <td>
-                                <button class="update-btn">Update</button>
-                                <button class="delete-btn">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      <div class="bar">MENU</div>
+      <div class="content">
+        <div class="mycontent">
+          <button class="add-item-btn" (click)="toggleAddForm()">
+            {{ showAddForm ? 'Cancel' : 'Add Item' }}
+          </button>
+          <form class="add-item-form" *ngIf="showAddForm">
+            <h3>{{ isEditing ? 'Update Item' : 'Add New Item' }}</h3>
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" [(ngModel)]="newItem.name" name="name">
+            <label for="short_description">Short Description:</label>
+            <textarea id="short_description" [(ngModel)]="newItem.short_description" name="short_description"></textarea>
+            <label for="price">Price:</label>
+            <input type="text" id="price" [(ngModel)]="newItem.price" name="price">
+            <label for="category">Category:</label>
+            <input type="text" id="category" [(ngModel)]="newItem.category" name="category">
+            <label for="stock">Stock:</label>
+            <input type="text" id="stock" [(ngModel)]="newItem.stock" name="stock">
+            <label for="flavor">Flavor:</label>
+            <input type="text" id="flavor" [(ngModel)]="newItem.flavor" name="flavor">
+            <label for="image">Image URL:</label>
+            <input type="text" id="image" [(ngModel)]="newItem.image" name="image">
+            <button type="button" (click)="isEditing ? updateItem() : addItem()">
+              {{ isEditing ? 'Update' : 'Add' }}
+            </button>
+            <button type="button" (click)="toggleAddForm()">Cancel</button>
+          </form>
+          <table class="menu-table">
+            <thead>
+              <tr>
+                <th>IMAGE</th>
+                <th>NAME</th>
+                <th>DESCRIPTION</th>
+                <th>PRICE</th>
+                <th>STOCK</th>
+                <th>ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of menuItems">
+                <td><img [src]="item.image" [alt]="item.name" width="80"></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.short_description }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.stock }}</td>
+                <td>
+                  <button class="update-btn" (click)="editItem(item)">Update</button>
+                  <button class="delete-btn" (click)="deleteItem(item.productId)">Delete</button>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-    </div> 
-</div>
-<div class="footer">
-    <ul>
-        <li>twitter</li>
-        <li>facebook</li>
-        <li>instagram</li>
-    </ul>
-</div>
+      </div>
+    </div>
+  

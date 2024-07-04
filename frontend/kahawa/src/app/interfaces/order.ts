@@ -1,4 +1,5 @@
 export interface Order {
+    editingStatus?: boolean;
     orderId: string;
     userId: string;
     productId: string;
@@ -6,7 +7,9 @@ export interface Order {
     price: string;
     flavor: string;
     name: string;
-    status: string;   // Add status field
-    date: Date;
+    status: string; 
+    address: string;
+    phoneNumber: string;  // Add status field
+    date?: Date;
     totalPrice?: number;
 }

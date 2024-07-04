@@ -32,6 +32,8 @@ const sqlConfig_1 = require("../sqlConfig");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const uuid_1 = require("uuid"); // Import uuid library
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const createUser = async (user) => {
     const userId = (0, uuid_1.v4)(); // Generate UUID for userId
     const hashedPassword = await bcrypt_1.default.hash(user.password, 10);
@@ -77,7 +79,7 @@ const loginUser = async (loginDetails) => {
         console.log('User found:', user);
         if (await bcrypt_1.default.compare(loginDetails.password, user.password)) {
             console.log('User login successful');
-            const token = jsonwebtoken_1.default.sign({ userId: user.userId, role: 'user' }, 'your_secret_key', { expiresIn: '1h' });
+            const token = jsonwebtoken_1.default.sign({ userId: user.userId, role: 'user' }, process.env.JWT_SECRET, { expiresIn: '1h' });
             return { token, role: 'user' };
         }
         else {

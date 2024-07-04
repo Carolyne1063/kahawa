@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CartItem } from '../interfaces/cart';
 
@@ -7,12 +7,18 @@ import { CartItem } from '../interfaces/cart';
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = 'http://localhost:3000/api/cart';
+  private apiUrl = 'http://localhost:3000/cart';
+  headers: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem('token') || ''
+  })
 
   constructor(private http: HttpClient) {}
 
-  addItemToCart(userId: string, productId: string, quantity: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/add`, { userId, productId, quantity });
+  addItemToCart(productId: string, quantity: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/add`, {productId, quantity }, {
+      headers: this.headers
+    });
   }
 
   updateCartItem(cartId: string, userId: string, productId: string, quantity: string): Observable<any> {

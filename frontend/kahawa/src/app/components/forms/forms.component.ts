@@ -11,11 +11,12 @@ import { UserService } from '../../services/user.service';
 import { User, LoginDetails } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from '../landing-page/navbar/navbar.component';
 
 @Component({
   selector: 'app-forms',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ReactiveFormsModule],
+  imports: [RouterOutlet, CommonModule, ReactiveFormsModule,NavbarComponent],
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css']
 })
@@ -97,7 +98,7 @@ export class FormsComponent implements OnInit {
             if (response.role === 'admin') {
               this.router.navigate(['/admin']);
             } else {
-              this.router.navigate(['/user']);
+              this.router.navigate(['/user/menu']);
             }
           }, 2000);  // Redirect after 4 seconds
         },

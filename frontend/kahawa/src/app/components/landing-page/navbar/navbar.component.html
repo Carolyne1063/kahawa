@@ -1,14 +1,13 @@
 <div class="navbar">
     <img class=logo [src]="logo" alt="" style="margin-left: 12px;">
     <div class="nav-links">
-        <p>{{Home}}</p>
+        <p routerLink="home">{{Home}}</p>
         <p>{{AboutUs}}</p>
         <p>{{Menu}}</p>
         <p>{{Review}}</p>
         <p>{{ContactUs}}</p>
-        <a href="/forms"><button>Login</button></a>
-        <input type="search" placeholder="Search">
-        
+        <a routerLink="forms"><button>Login</button></a>        
+        <a routerLink="forms"><button>Get Started</button></a>        
     </div>
 </div>
 <hr>

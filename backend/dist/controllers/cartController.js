@@ -3,9 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.clearCartController = exports.getCartItemsController = exports.removeItemFromCartController = exports.updateCartItemController = exports.addItemToCartController = void 0;
 const cartService_1 = require("../services/cartService");
 const uuid_1 = require("uuid");
+const getIdFromToken_1 = require("../helpers/getIdFromToken");
 // Add an item to the cart
 const addItemToCartController = async (req, res) => {
-    const { userId, productId, quantity } = req.body;
+    const { productId, quantity } = req.body;
+    const userId = (0, getIdFromToken_1.getIdFromToken)(req);
     const cartId = (0, uuid_1.v4)(); // Generate a unique ID for the cart item
     try {
         await (0, cartService_1.addItemToCart)(userId, productId, quantity);

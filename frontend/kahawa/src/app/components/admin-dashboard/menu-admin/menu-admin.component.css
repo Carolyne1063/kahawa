@@ -1,15 +1,15 @@
 /* General styles */
 .dashboard {
-    background-color: #000;
-    color: #fff;
+    background-color: #1a1a1a;
+    color: #f5f5f5;
     display: flex;
     height: 100vh;
     min-height: 100vh; /* Ensure dashboard fills the viewport height */
 }
 
 .bar {
-    background-color: #754e14;
-    color: #fff;
+    background-color: #5c4033;
+    color: #f5f5f5;
     text-align: center;
     padding: 10px 0;
     font-size: 24px;
@@ -19,18 +19,36 @@
 
 .sidebar {
     width: 250px;
-    background-color: black;
-    color: #fff;
+    background-color: #2e2e2e;
+    color: #f5f5f5;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
 }
 
+.profile-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.welcome-text {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
 .sidebar ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 .sidebar li {
@@ -43,10 +61,11 @@
     margin-top: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    background-color: #3d3d3d;
 }
 
 .sidebar li:hover {
-    background-color: #967846;
+    background-color: #5c4033;
 }
 
 .container {
@@ -55,6 +74,7 @@
     align-items: center;
     flex-direction: column;
     height: fit-content;
+    background-color: #1a1a1a;
 }
 
 .content {
@@ -74,27 +94,27 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: #333;
-    color: #fff;
+    background-color: #2e2e2e;
+    color: #f5f5f5;
 }
 
 .menu-table th, .menu-table td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid #754e14;
+    border-bottom: 1px solid #5c4033;
 }
 
 .menu-table th {
-    background-color: #754e14;
-    color: #fff;
+    background-color: #5c4033;
+    color: #f5f5f5;
 }
 
 .menu-table tbody tr:nth-child(even) {
-    background-color: #000;
+    background-color: #3d3d3d;
 }
 
 .menu-table tbody tr:nth-child(odd) {
-    background-color: #222;
+    background-color: #2e2e2e;
 }
 
 .add-item-btn {
@@ -102,8 +122,8 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #754e14;
-    color: #fff;
+    background-color: #5c4033;
+    color: #f5f5f5;
     margin-top: 20px;
     transition: background-color 0.3s ease;
 }
@@ -122,13 +142,13 @@
 
 .update-btn {
     background-color: #4CAF50;
-    color: #fff;
+    color: #f5f5f5;
     margin-right: 5px;
 }
 
 .delete-btn {
     background-color: #ff4d4d;
-    color: #fff;
+    color: #f5f5f5;
 }
 
 .update-btn:hover {
@@ -140,8 +160,8 @@
 }
 
 .footer {
-    background-color: #000;
-    color: #fff;
+    background-color: #1a1a1a;
+    color: #f5f5f5;
     text-align: center;
     padding: 20px 0;
     margin-top: auto;
@@ -162,8 +182,8 @@
 /* Form styles */
 .add-item-form {
     display: none;
-    background-color: #000;
-    color: #754e14;
+    background-color: #2e2e2e;
+    color: #f5f5f5;
     padding: 20px;
     border-radius: 5px;
     margin-top: 10px;
@@ -171,11 +191,11 @@
 }
 
 .add-item-form h3 {
-    color: #754e14;
+    color: #f5f5f5;
 }
 
 .add-item-form label {
-    color: #754e14;
+    color: #f5f5f5;
     margin-bottom: 10px;
     display: block;
 }
@@ -186,10 +206,10 @@
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #754e14;
+    border: 1px solid #5c4033;
     border-radius: 5px;
-    background-color: #222;
-    color: #fff;
+    background-color: #3d3d3d;
+    color: #f5f5f5;
 }
 
 .add-item-form button {
@@ -197,8 +217,8 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #754e14;
-    color: #fff;
+    background-color: #5c4033;
+    color: #f5f5f5;
     margin-top: 20px;
     transition: background-color 0.3s ease;
 }

@@ -3,11 +3,11 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-  "firstname": "Stanley",
-  "lastname": "Nyakinda",
-  "phoneNumber": "0740837666",
+  "firstname": "Carolyne",
+  "lastname": "Doe",
+  "phoneNumber": "0740037666",
   "address": "Chuka",
-  "email": "stanley@example.com",
+  "email": "caro@example.com",
   "password": "password123"
 }
 
@@ -25,7 +25,7 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "stanley@example.com",
+  "email": "caro@example.com",
   "password": "password123"
 }
 

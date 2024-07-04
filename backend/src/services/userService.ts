@@ -4,6 +4,9 @@ import { User, LoginDetails } from '../interfaces/users';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid'; // Import uuid library
+import dotnev from 'dotenv';
+
+dotnev.config();
 
 const createUser = async (user: User) => {
   const userId = uuidv4(); // Generate UUID for userId
@@ -57,7 +60,7 @@ const loginUser = async (loginDetails: LoginDetails) => {
     console.log('User found:', user);
     if (await bcrypt.compare(loginDetails.password, user.password)) {
       console.log('User login successful');
-      const token = jwt.sign({ userId: user.userId, role: 'user' }, 'your_secret_key', { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user.userId, role: 'user' }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
       return { token, role: 'user' };
     } else {
       console.log('Password mismatch');

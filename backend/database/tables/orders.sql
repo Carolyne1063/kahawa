@@ -22,4 +22,4 @@ ADD status VARCHAR(50) DEFAULT 'Pending',
 
 -- ALTER TABLE orders DROP COLUMN status;
 
--- SELECT * FROM orders;
+SELECT * FROM orders;

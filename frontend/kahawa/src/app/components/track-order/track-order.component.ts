@@ -4,7 +4,6 @@ import { Order } from '../../interfaces/order';
 import { OrderService } from '../../services/order.service';
 import { AuthService } from '../../services/auth.service';
 
-
 @Component({
   selector: 'app-track-order',
   standalone: true,
@@ -13,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './track-order.component.css'
 })
 
-export class TrackOrderComponent {
+export class TrackOrderComponent implements OnInit {
   orders: Order[] = [];
 
   constructor(
@@ -35,7 +34,7 @@ export class TrackOrderComponent {
       next: (orders) => {
         this.orders = orders.map(order => ({
           ...order,
-          // date: new Date(order.date),
+          date: order.date ? new Date(order.date) : new Date(),  // Handle the date conversion
           totalPrice: parseFloat(order.price) * parseFloat(order.quantity)
         }));
       },
@@ -43,8 +42,13 @@ export class TrackOrderComponent {
     });
   }
 
-  cancelOrder(orderId: string): void {
-    // Implement the cancel order functionality here
-    console.log(`Canceling order with ID: ${orderId}`);
+  deleteOrder(orderId: string): void {
+    this.orderService.deleteOrder(orderId).subscribe({
+      next: () => {
+        this.getOrdersByUser(this.authService.getUserId()!);  // Refresh the order list
+        console.log(`Order with ID ${orderId} has been deleted.`);
+      },
+      error: (error) => console.error('Error deleting order:', error)
+    });
   }
 }

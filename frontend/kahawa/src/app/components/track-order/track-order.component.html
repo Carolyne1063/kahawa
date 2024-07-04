@@ -8,7 +8,7 @@
         <th>Total Price</th>
         <th>Status</th>
         <th>Date</th>
-        <th>Actions</th> <!-- Additional field for order date -->
+        <th>Actions</th> <!-- Action for deleting orders -->
       </tr>
     </thead>
     <tbody>
@@ -21,8 +21,8 @@
         </td>
         <td>{{ order.date | date: 'shortDate' }}</td>  <!-- Format the date -->
         <td>
-          <button (click)="cancelOrder(order.orderId)">Cancel Order</button>
-        </td><!-- Additional field for order date -->
+          <button (click)="deleteOrder(order.orderId)">Delete Order</button>
+        </td> <!-- Updated action for deleting orders -->
       </tr>
     </tbody>
   </table>

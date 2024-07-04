@@ -106,4 +106,3 @@ export { registerUser, loginUserController, deleteUserController, getUsers, getU
   function getErrorMessage(err: unknown) {
     throw new Error('Function not implemented.');
   }
-

@@ -29,17 +29,14 @@ const loginUserController = async (req, res) => {
 };
 exports.loginUserController = loginUserController;
 const updateUserByEmailOrId = async (req, res) => {
-    const { userId, email, ...user } = req.body;
-    if (!userId && !email) {
-        return res.status(400).json({ message: 'UserId or Email is required' });
-    }
     try {
-        await (0, userService_1.updateUser)(userId, email, user);
+        const { userId, email } = req.body;
+        const updates = req.body;
+        await (0, userService_1.updateUser)(userId, email, updates);
         res.status(200).json({ message: 'User updated successfully' });
     }
-    catch (error) {
-        console.error('Error updating user:', error);
-        res.status(500).json({ message: 'Error updating user' });
+    catch (err) {
+        res.status(500).json({ error: getErrorMessage(err) });
     }
 };
 exports.updateUserByEmailOrId = updateUserByEmailOrId;

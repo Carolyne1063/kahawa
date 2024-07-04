@@ -90,3 +90,12 @@
   font-size: 14px; /* Adjusted font size */
   font-weight: bold;
 }
+
+.success-message {
+  background-color: #4caf50; /* Green color for success */
+  color: #fff; /* White text color */
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+}

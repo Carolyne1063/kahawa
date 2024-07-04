@@ -7,7 +7,7 @@ import { CartItem } from '../interfaces/cart';
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = 'http://localhost:3000/api/cart';
+  private apiUrl = 'http://localhost:3000/cart'; // Remove `/api` from the URL
 
   constructor(private http: HttpClient) {}
 

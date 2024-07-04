@@ -3,9 +3,9 @@ POST http://localhost:3000/api/orders/create-order
 Content-Type: application/json
 
 {
-    "userId": "7FEA48D0-0B57-46DB-92B3-EB54AFEEFEE7",
-    "productId": "e070174e-992d-4e0c-af63-17d6384eb0e6",
-    "quantity": "20"
+    "userId": "36B35840-8B83-4327-AD3F-6CA0C8323F9C",
+    "productId": "3be4a39c-483f-4968-bc2c-b80219586bcb",
+    "quantity": "10"
 }
 
 ### Update an Order

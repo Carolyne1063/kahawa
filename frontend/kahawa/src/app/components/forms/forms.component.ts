@@ -1,16 +1,11 @@
-
 import { Component, OnInit } from '@angular/core';
-
 import { RouterOutlet, Router } from '@angular/router';  // Import Router
-
-
-
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User, LoginDetails } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';  // Import AuthService
 
 @Component({
   selector: 'app-forms',
@@ -26,7 +21,12 @@ export class FormsComponent implements OnInit {
   registerSuccessMessage: string | null = null;  // Add success message variables
   loginSuccessMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {  // Inject Router
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private authService: AuthService  // Inject AuthService
+  ) {
     this.registerForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -43,12 +43,9 @@ export class FormsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     const container = document.getElementById('container');
     const signUpBtn = document.getElementById('signUp');
     const signInBtn = document.getElementById('signIn');
-
-
 
     if (signUpBtn && signInBtn && container) {
       signUpBtn.addEventListener('click', () => {
@@ -60,8 +57,6 @@ export class FormsComponent implements OnInit {
       });
     }
   }
-
-
 
   register(): void {
     if (this.registerForm.valid) {
@@ -89,8 +84,9 @@ export class FormsComponent implements OnInit {
           console.log('User logged in successfully', response);
           this.loginSuccessMessage = 'Login successful!';  // Set success message
 
-          // Store the token
+          // Store the token and userId
           localStorage.setItem('token', response.token);
+          this.authService.setUserId(response.userId);  // Store the userId
 
           // Redirect based on role after a delay
           setTimeout(() => {
@@ -99,7 +95,7 @@ export class FormsComponent implements OnInit {
             } else {
               this.router.navigate(['/user']);
             }
-          }, 2000);  // Redirect after 4 seconds
+          }, 2000);  // Redirect after 2 seconds
         },
         error => {
           console.error('Error logging in', error);
@@ -115,7 +111,4 @@ export class FormsComponent implements OnInit {
   get loginControls() {
     return this.loginForm.controls;
   }
-
 }
-
-

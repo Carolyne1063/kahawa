@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { User, LoginDetails } from '../interfaces/user'; // Adjust the import path as needed
 
 @Injectable({
@@ -16,10 +16,10 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/register`, user);
   }
 
-  // Log in a user
   login(loginDetails: LoginDetails): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, loginDetails);
   }
+
 
   // Update user information
   updateUser(userId: string, user: Partial<User>): Observable<any> {

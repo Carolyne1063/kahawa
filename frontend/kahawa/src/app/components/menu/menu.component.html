@@ -3,6 +3,7 @@
     <input type="text" placeholder="Search..." />
   </div>
   <h1 class="title">Menu</h1>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
   <div class="products-list">
     <div *ngFor="let product of menuProducts" class="card">
       <div class="card-image-container">

@@ -58,7 +58,7 @@ const loginUser = async (loginDetails: LoginDetails) => {
     if (await bcrypt.compare(loginDetails.password, user.password)) {
       console.log('User login successful');
       const token = jwt.sign({ userId: user.userId, role: 'user' }, 'your_secret_key', { expiresIn: '1h' });
-      return { token, role: 'user' };
+      return { token, userId: user.userId, role: 'user' };
     } else {
       console.log('Password mismatch');
     }

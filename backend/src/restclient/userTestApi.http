@@ -3,11 +3,11 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-  "firstname": "Stanley",
+  "firstname": "Stanleyasdfg",
   "lastname": "Nyakinda",
   "phoneNumber": "0740837666",
   "address": "Chuka",
-  "email": "stanley@example.com",
+  "email": "stanleyghj@example.com",
   "password": "password123"
 }
 
@@ -25,29 +25,29 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "stanley@example.com",
+  "email": "whitney@example.com",
   "password": "password123"
 }
 
 ### Update User
-PUT http://localhost:3000/api/users/F31E6569-BE8F-45C9-A67F-BCB8CE7B96B3
+PUT http://localhost:3000/api/users/BBFF8072-B5A3-47B1-9BC1-AD206C5995BC
 Content-Type: application/json
 
 {
-  "firstname": "Stanley",
+  "firstname": "Stanleywer",
   "lastname": "Nyakinda",
   "phoneNumber": "0740837669",
   "address": "Chuka",
-  "email": "stanley@example.com",
+  "email": "stanleywer@example.com",
   "password": "password123"
 }
 
 ### Delete User
-DELETE http://localhost:3000/api/users/A121D48B-F423-44CA-8547-52B13B15B9FE
+DELETE http://localhost:3000/api/users/CD342760-9351-4023-BD12-2CA996CCE263
 
 ### Get All Users
 GET http://localhost:3000/api/users
 
 ### Get User by ID
-GET http://localhost:3000/api/users/F31E6569-BE8F-45C9-A67F-BCB8CE7B96B3
+GET http://localhost:3000/api/users/CD342760-9351-4023-BD12-2CA996CCE263
 

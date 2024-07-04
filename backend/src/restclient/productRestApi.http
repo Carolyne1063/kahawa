@@ -3,7 +3,7 @@ POST http://localhost:3000/api/products/create-product
 Content-Type: application/json
 
 {
-    "name": "Viennesse Iced Coffee",
+    "name": "Viennesse Iced Coffee new",
     "short_description": "Vienna coffee is a delightful treat for coffee lovers. This coffee drink is typically prepared with a double espresso and topped with whisked whipped cream, then dusted with cocoa powder or chocolate shavings.",
     "price": "5.00",
     "image": "https://i.pinimg.com/474x/b5/ec/65/b5ec650bd79c564223bbffc0a52b31f6.jpg",
@@ -13,11 +13,11 @@ Content-Type: application/json
 }
 
 ### Update a Product
-PUT http://localhost:3000/api/products/9658a776-7970-4157-b3e5-974f8f5cd3c8
+PUT http://localhost:3000/api/products/47932ccf-0c8d-44ce-a259-474b48cad19b
 Content-Type: application/json
 
 {
-    "name": "Espresso",
+    "name": "Espresso delete",
     "short_description": "A strong concentrated coffee drink typically served in a small espresso cup.",
     "price": "6.50",
     "image": "https://i.pinimg.com/474x/a8/c3/30/a8c330fd5cced864f4b300c7afabdd40.jpg",
@@ -27,10 +27,10 @@ Content-Type: application/json
 }
 
 ### Delete a Product
-DELETE http://localhost:3000/api/products/b3423c9d-bd30-4fb0-8b6c-bd02e6418b22
+DELETE http://localhost:3000/api/products/47932ccf-0c8d-44ce-a259-474b48cad19b
 
 ### Get All Products
 GET http://localhost:3000/api/products
 
 ### Get Product by ID
-GET http://localhost:3000/api/products/dd791e8e-f682-404d-bbf4-1a8274129c7e
+GET http://localhost:3000/api/products/099676f6-9b90-4310-b98e-8d8ecba30cfc

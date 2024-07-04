@@ -3,19 +3,25 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../interfaces/product';
 import { HttpClientModule } from '@angular/common/http';
+import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
   imports: [CommonModule, HttpClientModule],
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   menuProducts: Product[] = [];
-  cartService: any;
+  successMessage: string | null = null;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.productService.getAllProducts().subscribe(
@@ -29,17 +35,23 @@ export class MenuComponent {
   }
 
   addToCart(product: Product) {
-    const quantity = '1'; // Replace with actual quantity
-    this.cartService.addItemToCart(this.userId, product.productId, quantity).subscribe(
-      (response: any) => {
-        console.log('Added to cart:', response);
-      },
-      (error: any) => {
-        console.error('Error adding to cart:', error);
-      }
-    );
-  }
-  userId(userId: any, productId: string, quantity: string) {
-    throw new Error('Method not implemented.');
+    const userId = this.authService.getUserId();
+    if (userId) {
+      const quantity = '1';
+      this.cartService.addItemToCart(userId, product.productId, quantity).subscribe(
+        (response: any) => {
+          this.successMessage = 'Added to cart!';
+          setTimeout(() => {
+            this.successMessage = null;
+          }, 3000);
+          console.log('Added to cart:', response);
+        },
+        (error: any) => {
+          console.error('Error adding to cart:', error);
+        }
+      );
+    } else {
+      console.error('User ID not found. User may not be logged in.');
+    }
   }
 }

@@ -78,7 +78,7 @@ const loginUser = async (loginDetails) => {
         if (await bcrypt_1.default.compare(loginDetails.password, user.password)) {
             console.log('User login successful');
             const token = jsonwebtoken_1.default.sign({ userId: user.userId, role: 'user' }, 'your_secret_key', { expiresIn: '1h' });
-            return { token, role: 'user' };
+            return { token, userId: user.userId, role: 'user' };
         }
         else {
             console.log('Password mismatch');

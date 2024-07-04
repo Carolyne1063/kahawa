@@ -3,30 +3,34 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../interfaces/cart';
-
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-shopping-cart',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './shopping-cart.component.html',
-  styleUrl: './shopping-cart.component.css'
+  styleUrls: ['./shopping-cart.component.css']
 })
-
-export class ShoppingCartComponent {
+export class ShoppingCartComponent implements OnInit {
   cartItems: CartItem[] = [];
   name: string = '';
   address: string = '';
   telNo: string = '';
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private authService: AuthService) {}
 
   ngOnInit() {
-    this.loadCartItems();
+    this.authService.userId$.subscribe(userId => {
+      if (userId) {
+        this.loadCartItems(userId);
+      } else {
+        console.error('User ID is null');
+      }
+    });
   }
 
-  loadCartItems() {
-    const userId = 'exampleUserId'; // Replace with actual user ID
+  loadCartItems(userId: string) {
     this.cartService.getCartItems(userId).subscribe(
       (items) => {
         this.cartItems = items;
@@ -38,21 +42,22 @@ export class ShoppingCartComponent {
   }
 
   getTotal() {
-    return this.cartItems.reduce((total, item) => total + parseFloat(item.price) * parseInt(item.quantity), 0).toFixed(2);
+    return this.cartItems
+      .reduce((total, item) => total + Number(item.price) * Number(item.quantity), 0)
+      .toFixed(2);
   }
 
-  formatPrice(price: string) {
-    return parseFloat(price).toFixed(2);
+  formatPrice(price: number) {
+    return price.toFixed(2);
   }
 
   isFormValid() {
     return this.name && this.address && this.telNo;
   }
 
-  placeOrder() {
+  completeOrder() {
     if (this.isFormValid()) {
-      // Handle order placement logic here
-      alert('Order placed successfully!');
+      alert('Order completed successfully! Go to track.');
     } else {
       alert('Please fill in all required fields.');
     }

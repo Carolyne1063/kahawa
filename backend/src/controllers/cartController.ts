@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
 import { addItemToCart, updateCartItem, removeItemFromCart, getCartItems, clearCart } from '../services/cartService';
 import { v4 as uuidv4 } from 'uuid';
+import { getIdFromToken } from '../helpers/getIdFromToken';
 
 // Add an item to the cart
 export const addItemToCartController = async (req: Request, res: Response) => {
-    const { userId, productId, quantity } = req.body;
+    const { productId, quantity } = req.body;
+    const userId = getIdFromToken(req);
     const cartId = uuidv4();  // Generate a unique ID for the cart item
 
     try {

@@ -16,6 +16,7 @@ import { MenuAdminComponent } from './components/admin-dashboard/menu-admin/menu
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
+  { path: 'home', component: LandingPageComponent },
   { path: 'forms', component: FormsComponent },
   // { path: 'admin', component:AdminComponent, children:[
   //   {path: 'menu-admin', component: MenuAdminComponent},

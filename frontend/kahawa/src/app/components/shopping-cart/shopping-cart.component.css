@@ -34,7 +34,7 @@
   margin-bottom: 10px;
 }
 
-.item-name, .item-price, .item-quantity {
+.item-name, .item-price, .item-quantity, .item-total {
   font-size: 18px;
 }
 

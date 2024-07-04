@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../interfaces/product';
 import { HttpClientModule } from '@angular/common/http';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-menu',
@@ -13,9 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class MenuComponent {
   menuProducts: Product[] = [];
-  cartService: any;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private cartService: CartService) {}
 
   ngOnInit() {
     this.productService.getAllProducts().subscribe(
@@ -29,8 +29,8 @@ export class MenuComponent {
   }
 
   addToCart(product: Product) {
-    const quantity = '1'; // Replace with actual quantity
-    this.cartService.addItemToCart(this.userId, product.productId, quantity).subscribe(
+    const quantity: string = "1"; // Replace with actual quantity
+    this.cartService.addItemToCart(product.productId, quantity).subscribe(
       (response: any) => {
         console.log('Added to cart:', response);
       },

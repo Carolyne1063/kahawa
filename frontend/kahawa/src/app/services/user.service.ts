@@ -25,9 +25,16 @@ export class UserService {
 
 
   // Update user information
-  updateUser(userId: string, user: Partial<User>): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${userId}`, user);
+  updateUser(user: Partial<User>, userId?: string, email?: string): Observable<any> {
+    // Ensure that only one of userId or email is provided
+    if (!userId && !email) {
+      throw new Error('Either userId or email must be provided');
+    }
+
+    const payload = { ...user, userId, email };
+    return this.http.put<any>(`${this.baseUrl}/update`, payload);
   }
+
 
   // Delete a user
   deleteUser(userId: string): Observable<any> {

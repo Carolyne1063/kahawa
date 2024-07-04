@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUser = exports.getUsers = exports.deleteUserController = exports.updateUserController = exports.loginUserController = exports.registerUser = void 0;
+exports.getUser = exports.getUsers = exports.deleteUserController = exports.loginUserController = exports.registerUser = exports.updateUserByEmailOrId = void 0;
 const userService_1 = require("../services/userService");
 const uuid_1 = require("uuid");
 const registerUser = async (req, res) => {
@@ -28,18 +28,21 @@ const loginUserController = async (req, res) => {
     }
 };
 exports.loginUserController = loginUserController;
-const updateUserController = async (req, res) => {
+const updateUserByEmailOrId = async (req, res) => {
+    const { userId, email, ...user } = req.body;
+    if (!userId && !email) {
+        return res.status(400).json({ message: 'UserId or Email is required' });
+    }
     try {
-        const userId = req.params.userId;
-        const user = req.body;
-        await (0, userService_1.updateUser)(userId, user);
+        await (0, userService_1.updateUser)(userId, email, user);
         res.status(200).json({ message: 'User updated successfully' });
     }
     catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error updating user:', error);
+        res.status(500).json({ message: 'Error updating user' });
     }
 };
-exports.updateUserController = updateUserController;
+exports.updateUserByEmailOrId = updateUserByEmailOrId;
 const deleteUserController = async (req, res) => {
     try {
         const userId = req.params.userId;
@@ -77,3 +80,6 @@ const getUser = async (req, res) => {
     }
 };
 exports.getUser = getUser;
+function getErrorMessage(err) {
+    throw new Error('Function not implemented.');
+}

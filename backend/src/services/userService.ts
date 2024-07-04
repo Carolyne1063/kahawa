@@ -70,17 +70,33 @@ const loginUser = async (loginDetails: LoginDetails) => {
   throw new Error('Invalid email or password');
 };
 
-const updateUser = async (userId: string, user: Partial<User>) => {
+export const updateUser = async (userId: string | null, email: string | null, user: Partial<User>) => {
+  if (user.password) {
+    user.password = await bcrypt.hash(user.password, 10);
+  }
+
   const pool = await sql.connect(sqlConfig);
-  const fieldsToUpdate = Object.keys(user)
-    .map(key => `${key} = @${key}`)
-    .join(', ');
-  const request = pool.request().input('userId', sql.UniqueIdentifier, userId);
-  Object.entries(user).forEach(([key, value]) => {
-    request.input(key, sql.NVarChar, value);
-  });
-  const result = await request.query(`UPDATE users SET ${fieldsToUpdate} WHERE userId = @userId`);
-  return result;
+  const request = pool.request()
+    .input('userId', sql.UniqueIdentifier, userId)
+    .input('email', sql.NVarChar, email)
+    .input('firstname', sql.NVarChar, user.firstname)
+    .input('lastname', sql.NVarChar, user.lastname)
+    .input('phoneNumber', sql.VarChar, user.phoneNumber)
+    .input('address', sql.VarChar, user.address)
+    .input('password', sql.NVarChar, user.password)
+    .input('updatedAt', sql.DateTime, new Date());
+
+  await request.query(`
+    UPDATE users SET 
+      firstname = COALESCE(@firstname, firstname),
+      lastname = COALESCE(@lastname, lastname),
+      phoneNumber = COALESCE(@phoneNumber, phoneNumber),
+      address = COALESCE(@address, address),
+      password = COALESCE(@password, password),
+      updatedAt = @updatedAt
+    WHERE
+      userId = COALESCE(@userId, userId) OR email = COALESCE(@email, email)
+  `);
 };
 
 const deleteUser = async (userId: string) => {
@@ -109,7 +125,6 @@ export {
   createUser,
   getUserByEmail,
   loginUser,
-  updateUser,
   deleteUser,
   getAllUsers,
   getUserById

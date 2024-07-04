@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
-import { createUser, loginUser, updateUser, deleteUser, getAllUsers, getUserById } from '../services/userService';
+import { createUser, loginUser, updateUser, deleteUser, getAllUsers, getUserById, } from '../services/userService';
 import { User, LoginDetails } from '../interfaces/users';
 import { v4 as uuidv4 } from 'uuid'; 
+import sql from 'mssql';
+import { sqlConfig } from '../sqlConfig';
 
 const registerUser = async (req: Request, res: Response) => {
   try {
@@ -26,16 +28,46 @@ const loginUserController = async (req: Request, res: Response) => {
   }
 };
 
-const updateUserController = async (req: Request, res: Response) => {
+export const updateUserByEmailOrId = async (req: Request, res: Response) => {
+  const { userId, email, ...user } = req.body;
+
+  if (!userId && !email) {
+    return res.status(400).json({ message: 'UserId or Email is required' });
+  }
+
   try {
-    const userId = req.params.userId;
-    const user = req.body;
-    await updateUser(userId, user);
+    const pool = await sql.connect(sqlConfig);
+    const fieldsToUpdate = Object.keys(user)
+      .map(key => `${key} = @${key}`)
+      .join(', ');
+
+    const request = pool.request();
+
+    if (userId) {
+      request.input('userId', sql.UniqueIdentifier, userId);
+    } else if (email) {
+      request.input('email', sql.NVarChar, email);
+    }
+
+    Object.entries(user).forEach(([key, value]) => {
+      request.input(key, sql.NVarChar, value);
+    });
+
+    const query = userId
+      ? `UPDATE users SET ${fieldsToUpdate} WHERE userId = @userId`
+      : `UPDATE users SET ${fieldsToUpdate} WHERE email = @email`;
+
+    await request.query(query);
+
     res.status(200).json({ message: 'User updated successfully' });
   } catch (error) {
-    res.status(500).json({ error: (error as Error).message });
+    console.error('Error updating user:', error);
+    res.status(500).json({ message: 'Error updating user' });
   }
 };
+
+
+
 
 const deleteUserController = async (req: Request, res: Response) => {
   try {
@@ -70,4 +102,8 @@ const getUser = async (req: Request, res: Response) => {
   }
 };
 
-export { registerUser, loginUserController, updateUserController, deleteUserController, getUsers, getUser };
+export { registerUser, loginUserController, deleteUserController, getUsers, getUser };
+  function getErrorMessage(err: unknown) {
+    throw new Error('Function not implemented.');
+  }
+

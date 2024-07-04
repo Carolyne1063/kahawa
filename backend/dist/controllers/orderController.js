@@ -40,7 +40,7 @@ const createOrder = async (req, res) => {
     try {
         const { userId, productId, quantity } = req.body;
         await orderService.createOrder(userId, productId, quantity);
-        res.status(201).send('Order created successfully');
+        res.status(201).json({ message: 'Order created successfully' }); // Changed to JSON
     }
     catch (err) {
         res.status(500).json({ error: getErrorMessage(err) });
@@ -51,7 +51,7 @@ const updateOrder = async (req, res) => {
     try {
         const { quantity } = req.body;
         await orderService.updateOrder(req.params.orderId, quantity);
-        res.status(200).send('Order updated successfully');
+        res.status(200).json({ message: 'Order updated successfully' }); // Changed to JSON
     }
     catch (err) {
         res.status(500).json({ error: getErrorMessage(err) });
@@ -61,7 +61,7 @@ exports.updateOrder = updateOrder;
 const deleteOrder = async (req, res) => {
     try {
         await orderService.deleteOrder(req.params.orderId);
-        res.status(200).send('Order deleted successfully');
+        res.status(200).json({ message: 'Order deleted successfully' }); // Changed to JSON
     }
     catch (err) {
         res.status(500).json({ error: getErrorMessage(err) });

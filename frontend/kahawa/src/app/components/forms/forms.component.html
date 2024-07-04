@@ -48,7 +48,7 @@
                     <small *ngIf="loginControls['password'].errors?.['required']" class="text-danger">Password is required</small>
                     <small *ngIf="loginControls['password'].errors?.['minlength']" class="text-danger">Password must be at least 6 characters</small>
                 </div>
-                <a href="#" style="padding-left:150px; font-weight: bold">Forgot Your Password?</a>
+                <a href="/reset-password" style="padding-left:150px; font-weight: bold">Forgot Your Password?</a>
                 <button type="submit" [disabled]="loginForm.invalid" style="margin-top: 10px">SIGN IN</button>
                 <div *ngIf="loginSuccessMessage" class="text-success mt-3">{{ loginSuccessMessage }}</div>  <!-- Success message -->
                 <h5>New here? <a class="ghost" id="signUp" style="color:#754e14;"><u>Register</u></a></h5>

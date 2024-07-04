@@ -85,6 +85,7 @@ exports.updateCartItem = updateCartItem;
 const removeItemFromCart = async (cartId, userId, productId) => {
     try {
         let pool = await mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        // Fetch current quantity of the item in the cart
         const cartResult = await pool.request()
             .input('cartId', mssql_1.default.VarChar, cartId)
             .query('SELECT quantity FROM cart WHERE cartId = @cartId');
@@ -92,6 +93,7 @@ const removeItemFromCart = async (cartId, userId, productId) => {
             throw new Error('Cart item not found');
         }
         const quantity = cartResult.recordset[0].quantity;
+        // Fetch current stock of the product
         const productResult = await pool.request()
             .input('productId', mssql_1.default.VarChar, productId)
             .query('SELECT stock FROM products WHERE productId = @productId');
@@ -103,9 +105,13 @@ const removeItemFromCart = async (cartId, userId, productId) => {
         const transaction = new mssql_1.default.Transaction(pool);
         try {
             await transaction.begin();
+            // Remove the item from the cart
             await transaction.request()
                 .input('cartId', mssql_1.default.VarChar, cartId)
+                .input('userId', mssql_1.default.VarChar, userId)
+                .input('productId', mssql_1.default.VarChar, productId)
                 .execute('RemoveItemFromCart');
+            // Update the stock of the product
             await transaction.request()
                 .input('productId', mssql_1.default.VarChar, productId)
                 .input('newStock', mssql_1.default.Int, newStock)

@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserById = exports.getAllUsers = exports.deleteUser = exports.updateUser = exports.loginUser = exports.getUserByEmail = exports.createUser = void 0;
+exports.getUserById = exports.getAllUsers = exports.deleteUser = exports.loginUser = exports.getUserByEmail = exports.createUser = exports.updateUser = void 0;
 const sql = __importStar(require("mssql"));
 const sqlConfig_1 = require("../sqlConfig");
 const bcrypt_1 = __importDefault(require("bcrypt"));
@@ -91,16 +91,37 @@ const loginUser = async (loginDetails) => {
     throw new Error('Invalid email or password');
 };
 exports.loginUser = loginUser;
-const updateUser = async (userId, user) => {
+const updateUser = async (userId, email, user) => {
     const pool = await sql.connect(sqlConfig_1.sqlConfig);
-    const fieldsToUpdate = Object.keys(user)
+    let fieldsToUpdate = Object.keys(user)
+        .filter(key => key !== 'password') // Exclude 'password' from fields to update
         .map(key => `${key} = @${key}`)
         .join(', ');
-    const request = pool.request().input('userId', sql.UniqueIdentifier, userId);
+    let request = pool.request();
+    let query;
+    if (userId) {
+        request = request.input('userId', sql.UniqueIdentifier, userId);
+        query = `UPDATE users SET ${fieldsToUpdate} WHERE userId = @userId`;
+    }
+    else if (email) {
+        request = request.input('email', sql.NVarChar, email);
+        query = `UPDATE users SET ${fieldsToUpdate} WHERE email = @email`;
+    }
+    else {
+        throw new Error('Either userId or email must be provided');
+    }
+    if (user.password) {
+        // Hash the new password before updating
+        const hashedPassword = await bcrypt_1.default.hash(user.password, 10);
+        request.input('password', sql.NVarChar, hashedPassword);
+        fieldsToUpdate += ', password = @password'; // Add password update to the query
+    }
     Object.entries(user).forEach(([key, value]) => {
-        request.input(key, sql.NVarChar, value);
+        if (key !== 'password') { // Do not add password field again
+            request.input(key, sql.NVarChar, value);
+        }
     });
-    const result = await request.query(`UPDATE users SET ${fieldsToUpdate} WHERE userId = @userId`);
+    const result = await request.query(query);
     return result;
 };
 exports.updateUser = updateUser;

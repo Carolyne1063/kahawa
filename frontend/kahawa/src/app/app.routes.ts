@@ -11,20 +11,14 @@ import { OrdersComponent } from './components/admin-dashboard/orders/orders.comp
 import { CustomersComponent } from './components/admin-dashboard/customers/customers.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { MenuAdminComponent } from './components/admin-dashboard/menu-admin/menu-admin.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
 
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'forms', component: FormsComponent },
-  // { path: 'admin', component:AdminComponent, children:[
-  //   {path: 'menu-admin', component: MenuAdminComponent},
-  //   {path: 'orders', component: OrdersComponent},
-  //   {path: 'customers', component: CustomersComponent},
-  // ] },
-//   { path: 'register', component: RegisterComponent },
-
-//ADMIN
+  { path: 'reset-password', component: ResetpasswordComponent },
   { path: 'admin', component:AdminComponent},
     {path:'menu-admin',component:MenuAdminComponent},
     {path:'orders',component:OrdersComponent},

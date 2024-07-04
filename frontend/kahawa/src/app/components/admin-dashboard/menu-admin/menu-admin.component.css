@@ -1,17 +1,18 @@
-/* General styles */
 .dashboard {
     background-color: #1a1a1a;
     color: #f5f5f5;
+
     display: flex;
-    height: 100vh;
-    min-height: 100vh; /* Ensure dashboard fills the viewport height */
+    flex-direction: row;
+    height: 90vh;
+    font-family: 'Arial', sans-serif;
 }
 
 .bar {
     background-color: #5c4033;
     color: #f5f5f5;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
     font-size: 24px;
     border-bottom: 2px solid #967846;
     width: 100%;
@@ -21,10 +22,12 @@
     width: 250px;
     background-color: #2e2e2e;
     color: #f5f5f5;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .profile-section {
@@ -58,7 +61,7 @@
     text-align: center;
     padding: 15px 0;
     font-size: 18px;
-    margin-top: 10px;
+    margin: 10px auto;
     cursor: pointer;
     transition: background-color 0.3s ease;
     background-color: #3d3d3d;
@@ -68,6 +71,13 @@
     background-color: #5c4033;
 }
 
+.sidebar #this,
+.sidebar #logout {
+    background: linear-gradient(135deg, #754e14, #967846);
+    padding: 5px;
+    font-weight: bold;
+}
+
 .container {
     flex: 1;
     display: flex;
@@ -75,6 +85,7 @@
     flex-direction: column;
     height: fit-content;
     background-color: #1a1a1a;
+
 }
 
 .content {
@@ -82,10 +93,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px; /* Adjust margin top for content spacing */
 }
 
 .mycontent {
+    display: flex;
+    justify-content: space-around;
     width: 100%;
     overflow-x: auto; /* Allow horizontal scroll if content overflows */
 }
@@ -116,6 +128,7 @@
 .menu-table tbody tr:nth-child(odd) {
     background-color: #2e2e2e;
 }
+
 
 .add-item-btn {
     padding: 10px 20px;
@@ -186,8 +199,9 @@
     color: #f5f5f5;
     padding: 20px;
     border-radius: 5px;
-    margin-top: 10px;
     width: 80%;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
 }
 
 .add-item-form h3 {
@@ -197,7 +211,8 @@
 .add-item-form label {
     color: #f5f5f5;
     margin-bottom: 10px;
-    display: block;
+    color: #754e14; 
+    margin-bottom: 15px;
 }
 
 .add-item-form input[type="file"],
@@ -210,6 +225,7 @@
     border-radius: 5px;
     background-color: #3d3d3d;
     color: #f5f5f5;
+
 }
 
 .add-item-form button {
@@ -224,14 +240,39 @@
 }
 
 .add-item-form button:hover {
-    background-color: #967846;
+    background-color: #967846; 
 }
 
-.add-item-form button:last-child {
+.add-item-form button.cancel-btn {
+    background-color: #ff4d4d; 
     margin-left: 10px;
-    background-color: #ff4d4d;
 }
 
-.add-item-form button:last-child:hover {
-    background-color: #cc0000;
+.add-item-form button.cancel-btn:hover {
+    background-color: #cc0000; 
+}
+
+.footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer li {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.footer li:hover {
+    color: #967846;
 }

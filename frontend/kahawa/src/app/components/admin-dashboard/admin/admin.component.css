@@ -137,6 +137,8 @@
     font-size: 20px;
     cursor: pointer;
     transition: color 0.3s ease;
+
+}
 }
 
 .footer li:hover {

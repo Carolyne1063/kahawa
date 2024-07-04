@@ -1,40 +1,38 @@
 .dashboard {
-    background-color: #000; 
-    color: #fff; 
+    background-color: #333;
+    color: #fff;
     display: flex;
-    height: 100vh;
-    
+    flex-direction: row;
+    height: 90vh;
+    font-family: 'Arial', sans-serif;
 }
 
 .bar {
-    background-color: #754e14; 
+    background-color: #754e14;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
     font-size: 24px;
     border-bottom: 2px solid #967846;
-    width: 100%; 
-}
-
-.sidebar-container {
-    display: flex;
-    height: calc(100vh - 60px); 
+    width: 100%;
 }
 
 .sidebar {
     width: 250px;
-    background-color: black;
+    background-color: #222;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 .sidebar li {
@@ -44,26 +42,48 @@
     text-align: center;
     padding: 15px 0;
     font-size: 18px;
-    margin-top: 10px;
+    margin: 10px auto;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    background-color: #333;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar #this,
+.sidebar #logout {
+    background: linear-gradient(135deg, #754e14, #967846);
+    padding: 5px;
+    font-weight: bold;
 }
 
 .sidebar li:hover {
-    background-color: #967846; 
+    background-color: #967846;
+    transform: translateY(-3px);
 }
 
 .container {
     flex: 1;
     display: flex;
-    
     align-items: center;
     flex-direction: column;
 }
-#logout{
-    background: #754e14;
-    padding: 5px;
+
+.content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.mycontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
 .order-table {
     width: 100%;
     border-collapse: collapse;
@@ -72,7 +92,8 @@
     color: #fff;
 }
 
-.order-table th, .order-table td {
+.order-table th,
+.order-table td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #754e14;
@@ -91,69 +112,25 @@
     background-color: #222;
 }
 
-.order-table .delete-btn, .order-table .update-btn {
-    padding: 8px 12px;
-    margin-right: 5px;
+.delete-btn,
+.update-btn {
+    background-color: #222;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    padding: 8px 16px;
+    margin-right: 8px;
     cursor: pointer;
+    border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
-.order-table .delete-btn {
-    background-color: #ff4d4d;
-    color: #fff;
-}
-
-.order-table .delete-btn:hover {
-    background-color: #cc0000;
-}
-
-.order-table .update-btn {
-    background-color: #4CAF50;
-    color: #fff;
-}
-
-.order-table .update-btn:hover {
-    background-color: #45a049;
-}
-
-#this{
-    background: #754e14;
-    padding: 5px;
-}
-.content {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.mycontent {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.cont {
-    width: 30%;
-    height: 200px;
-    background-color: #754e14; 
-    border-radius: 10px;
-    margin: 20px 10px;
-    padding: 20px;
-    text-align: center;
-    color: #fff; 
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.cont:hover {
-    background-color: #000;
+.delete-btn:hover,
+.update-btn:hover {
+    background-color: #754e14;
 }
 
 .footer {
-    background-color: #000; 
+    background-color: #222;
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -170,4 +147,9 @@
     margin: 0 10px;
     font-size: 20px;
     cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.footer li:hover {
+    color: #967846;
 }

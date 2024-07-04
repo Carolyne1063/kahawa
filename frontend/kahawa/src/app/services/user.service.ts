@@ -7,6 +7,9 @@ import { User, LoginDetails } from '../interfaces/user'; // Adjust the import pa
   providedIn: 'root'
 })
 export class UserService {
+  getUserById(userId: string) {
+    throw new Error('Method not implemented.');
+  }
   private baseUrl = 'http://localhost:3000/api/users'; // Set this to your backend URL
 
   constructor(private http: HttpClient) {}

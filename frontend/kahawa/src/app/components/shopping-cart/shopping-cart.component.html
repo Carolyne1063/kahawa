@@ -7,6 +7,7 @@
         <span class="item-name">{{ item.name }}</span>
         <span class="item-price">${{ formatPrice(item.price) }}</span>
         <span class="item-quantity">x{{ item.quantity }}</span>
+        <button (click)="selectItem(item)">Order</button>
       </div>
       <div class="total">
         <span>Total:</span>
@@ -17,22 +18,27 @@
       <h2 class="section-title">Order Checkout</h2>
       <form (ngSubmit)="placeOrder()">
         <div class="form-group">
+          <label for="productName">Product Name <span class="required">*</span></label>
+          <input type="text" id="productName" [(ngModel)]="productName" name="productName" required readonly />
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantity <span class="required">*</span></label>
+          <input type="text" id="quantity" [(ngModel)]="quantity" name="quantity" required />
+        </div>
+        <div class="form-group">
           <label for="name">Name <span class="required">*</span></label>
-          <input type="text" id="name" [(ngModel)]="name" name="name" required />
+          <input type="text" id="name" [(ngModel)]="name" name="name" required readonly />
         </div>
         <div class="form-group">
           <label for="address">Address <span class="required">*</span></label>
-          <input type="text" id="address" [(ngModel)]="address" name="address" required />
+          <input type="text" id="address" [(ngModel)]="address" name="address" required readonly />
         </div>
         <div class="form-group">
           <label for="telNo">Tel No <span class="required">*</span></label>
-          <input type="text" id="telNo" [(ngModel)]="telNo" name="telNo" required />
+          <input type="text" id="telNo" [(ngModel)]="telNo" name="telNo" required readonly />
         </div>
         <button type="submit" [disabled]="!isFormValid()" class="confirm-btn">Confirm Order</button>
       </form>
-      <!-- Add success and error message display -->
-      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
-      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </div>
   </div>
 </div>

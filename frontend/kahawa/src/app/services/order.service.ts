@@ -12,9 +12,10 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   // Create a new order
-  createOrder(userId: string, productId: string, quantity: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/create-order`, { userId, productId, quantity });
-  }
+createOrder(userId: string, productId: string, quantity: string): Observable<any> {
+  return this.http.post<any>(`${this.baseUrl}/create-order`, { userId, productId, quantity });
+}
+
 
   // Update an existing order
   updateOrder(orderId: string, update: { status?: string, quantity?: string }): Observable<any> {

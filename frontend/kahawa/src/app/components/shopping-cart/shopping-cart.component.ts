@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
-import { OrderService } from '../../services/order.service';  // Import the OrderService
+import { OrderService } from '../../services/order.service';
+import { UserService } from '../../services/user.service';
 import { CartItem } from '../../interfaces/cart';
 import { AuthService } from '../../services/auth.service';
 
@@ -15,15 +16,17 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ShoppingCartComponent implements OnInit {
   cartItems: CartItem[] = [];
+  selectedItem: CartItem | null = null;
   name: string = '';
   address: string = '';
   telNo: string = '';
-  successMessage: string = '';  // Add success message variable
-  errorMessage: string = '';  // Add error message variable
+  productName: string = '';
+  quantity: string = '';
 
   constructor(
     private cartService: CartService,
     private orderService: OrderService,
+    private userService: UserService,
     private authService: AuthService
   ) {}
 
@@ -32,7 +35,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   loadCartItems() {
-    const userId = this.authService.getUserId();  // Get the current user's ID
+    const userId = this.authService.getUserId();
     if (userId) {
       this.cartService.getCartItems(userId).subscribe(
         (items) => {
@@ -42,8 +45,6 @@ export class ShoppingCartComponent implements OnInit {
           console.error('Error fetching cart items:', error);
         }
       );
-    } else {
-      console.error('User ID not found. User may not be logged in.');
     }
   }
 
@@ -56,34 +57,52 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   isFormValid() {
-    return this.name && this.address && this.telNo;
+    return this.name && this.address && this.telNo && this.productName && this.quantity;
+  }
+
+  selectItem(item: CartItem) {
+    this.selectedItem = item;
+    this.productName = item.name;
+    this.quantity = item.quantity;
+
+    const userId = this.authService.getUserId();
+    if (userId) {
+      this.userService.getUser(userId).subscribe(user => {
+        this.name = user.firstname + ' ' + user.lastname;
+        this.address = user.address;
+        this.telNo = user.phoneNumber;
+      });
+    }
   }
 
   placeOrder() {
-    if (this.isFormValid()) {
-      const userId = this.authService.getUserId();  // Get the current user's ID
+    if (this.isFormValid() && this.selectedItem) {
+      const userId = this.authService.getUserId();
       if (userId) {
-        // Iterate over cart items and create an order for each
-        this.cartItems.forEach((item) => {
-          this.orderService.createOrder(userId, item.productId, item.quantity).subscribe(
-            () => {
-              // Clear the cart on successful order
-              this.cartService.clearCart(userId).subscribe(() => {
-                this.successMessage = 'Order placed successfully!';
-                this.cartItems = [];
-              });
-            },
-            (error) => {
-              console.error('Error placing order:', error);
-              this.errorMessage = 'Failed to place order. Please try again.';
-            }
-          );
-        });
-      } else {
-        this.errorMessage = 'User ID not found. User may not be logged in.';
+        this.orderService.createOrder(userId, this.selectedItem.productId, this.quantity).subscribe(
+          (response) => {
+            alert(response.message || 'Order placed successfully!');
+            this.loadCartItems(); // Refresh cart items
+            this.resetForm();
+          },
+          (error) => {
+            console.error('Error placing order:', error);
+            alert('Failed to place order.');
+          }
+        );
       }
     } else {
-      this.errorMessage = 'Please fill in all required fields.';
+      alert('Please fill in all required fields.');
     }
+  }
+  
+
+  resetForm() {
+    this.name = '';
+    this.address = '';
+    this.telNo = '';
+    this.productName = '';
+    this.quantity = '';
+    this.selectedItem = null;
   }
 }

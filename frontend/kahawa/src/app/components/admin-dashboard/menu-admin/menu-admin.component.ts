@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ProductService } from '../../../services/product.service';  // Import the ProductService
-import { Product } from '../../../interfaces/product';  // Import the Product interface
+import { ProductService } from '../../../services/product.service';  
+import { Product } from '../../../interfaces/product';  
 import { v4 as uuidv4 } from 'uuid'; 
 
 @Component({
@@ -17,7 +17,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class MenuAdminComponent implements OnInit {
   menuItems: Product[] = [];
   showAddForm: boolean = false;
-  isEditing: boolean = false; // To track if we are in edit mode
+  isEditing: boolean = false; 
   newItem: Product = {
     productId: '',
     name: '',
@@ -77,10 +77,9 @@ export class MenuAdminComponent implements OnInit {
   }
 
   editItem(item: Product): void {
-    // Open the form and set the item to be edited
     this.newItem = { ...item };
     this.showAddForm = true;
-    this.isEditing = true; // Set editing mode
+    this.isEditing = true; 
   }
 
   updateItem(): void {

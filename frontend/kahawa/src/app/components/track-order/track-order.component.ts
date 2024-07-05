@@ -17,11 +17,11 @@ export class TrackOrderComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private authService: AuthService  // Inject AuthService
+    private authService: AuthService  
   ) {}
 
   ngOnInit(): void {
-    const userId = this.authService.getUserId();  // Fetch the logged-in user's ID
+    const userId = this.authService.getUserId();  
     if (userId) {
       this.getOrdersByUser(userId);
     } else {
@@ -34,7 +34,7 @@ export class TrackOrderComponent implements OnInit {
       next: (orders) => {
         this.orders = orders.map(order => ({
           ...order,
-          date: order.date ? new Date(order.date) : new Date(),  // Handle the date conversion
+          date: order.date ? new Date(order.date) : new Date(),  
           totalPrice: parseFloat(order.price) * parseFloat(order.quantity)
         }));
       },
@@ -45,7 +45,7 @@ export class TrackOrderComponent implements OnInit {
   deleteOrder(orderId: string): void {
     this.orderService.deleteOrder(orderId).subscribe({
       next: () => {
-        this.getOrdersByUser(this.authService.getUserId()!);  // Refresh the order list
+        this.getOrdersByUser(this.authService.getUserId()!);  
         console.log(`Order with ID ${orderId} has been deleted.`);
       },
       error: (error) => console.error('Error deleting order:', error)

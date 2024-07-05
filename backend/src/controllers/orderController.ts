@@ -15,7 +15,7 @@ export const createOrder = async (req: Request, res: Response) => {
     try {
         const { userId, productId, quantity } = req.body;
         await orderService.createOrder(userId, productId, quantity);
-        res.status(201).json({ message: 'Order created successfully' });  // Changed to JSON
+        res.status(201).json({ message: 'Order created successfully' });  
     } catch (err: unknown) {
         res.status(500).json({ error: getErrorMessage(err) });
     }
@@ -25,7 +25,7 @@ export const updateOrder = async (req: Request, res: Response) => {
     try {
         const { quantity } = req.body;
         await orderService.updateOrder(req.params.orderId, quantity);
-        res.status(200).json({ message: 'Order updated successfully' });  // Changed to JSON
+        res.status(200).json({ message: 'Order updated successfully' });  
     } catch (err: unknown) {
         res.status(500).json({ error: getErrorMessage(err) });
     }
@@ -34,7 +34,7 @@ export const updateOrder = async (req: Request, res: Response) => {
 export const deleteOrder = async (req: Request, res: Response) => {
     try {
         await orderService.deleteOrder(req.params.orderId);
-        res.status(200).json({ message: 'Order deleted successfully' });  // Changed to JSON
+        res.status(200).json({ message: 'Order deleted successfully' });  
     } catch (err: unknown) {
         res.status(500).json({ error: getErrorMessage(err) });
     }

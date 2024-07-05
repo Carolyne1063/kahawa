@@ -42,7 +42,7 @@ export class CustomersComponent implements OnInit {
       this.userService.deleteUser(userId).subscribe(
         () => {
           console.log('User deleted successfully');
-          this.loadCustomers();  // Refresh the list of customers after deletion
+          this.loadCustomers();  
         },
         (error) => {
           console.error('Error deleting user:', error);

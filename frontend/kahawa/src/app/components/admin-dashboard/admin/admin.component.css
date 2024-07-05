@@ -58,9 +58,7 @@
     background: #754e14;
     padding: 5px;
 }
-/* .sidebar li:hover {
-    background-color: #967846; 
-} */
+
 
 .container {
     flex: 1;
@@ -86,7 +84,6 @@
 .cont {
     width: 30%;
     height: 200px;
-    /* background-color: #754e14;  */
     background-color: #313131;
     border-radius: 10px;
     margin: 20px 10px;

@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class ResetpasswordComponent {
   resetPasswordForm: FormGroup;
   errorMessage: string = '';
-  successMessage: string = ''; // Added to display success messages
+  successMessage: string = ''; 
 
   constructor(
     private fb: FormBuilder,
@@ -25,8 +25,8 @@ export class ResetpasswordComponent {
     this.resetPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]]  // Added confirmation password
-    }, { validators: this.passwordMatchValidator });  // Added validator
+      confirmPassword: ['', [Validators.required]]  
+    }, { validators: this.passwordMatchValidator });  
   }
 
   passwordMatchValidator(form: FormGroup) {

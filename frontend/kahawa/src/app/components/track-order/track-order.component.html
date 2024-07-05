@@ -8,7 +8,7 @@
         <th>Total Price</th>
         <th>Status</th>
         <th>Date</th>
-        <th>Actions</th> <!-- Action for deleting orders -->
+        <th>Actions</th> 
       </tr>
     </thead>
     <tbody>
@@ -19,10 +19,10 @@
         <td [class.pending]="order.status === 'Pending'" [class.confirmed]="order.status === 'Confirmed'">
           {{ order.status }}
         </td>
-        <td>{{ order.date | date: 'shortDate' }}</td>  <!-- Format the date -->
+        <td>{{ order.date | date: 'shortDate' }}</td>  
         <td>
           <button (click)="deleteOrder(order.orderId)">Delete Order</button>
-        </td> <!-- Updated action for deleting orders -->
+        </td> 
       </tr>
     </tbody>
   </table>

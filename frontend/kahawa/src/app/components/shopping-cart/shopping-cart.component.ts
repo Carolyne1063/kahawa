@@ -82,7 +82,7 @@ export class ShoppingCartComponent implements OnInit {
         this.orderService.createOrder(userId, this.selectedItem.productId, this.quantity).subscribe(
           (response) => {
             alert(response.message || 'Order placed successfully!');
-            this.loadCartItems(); // Refresh cart items
+            this.loadCartItems();
             this.resetForm();
           },
           (error) => {
@@ -110,7 +110,7 @@ export class ShoppingCartComponent implements OnInit {
     if (userId) {
       this.cartService.removeItemFromCart(cartId, userId, productId).subscribe(
         () => {
-          this.loadCartItems(); // Refresh cart items
+          this.loadCartItems(); 
         },
         (error) => {
           console.error('Error removing item from cart:', error);
@@ -125,7 +125,7 @@ export class ShoppingCartComponent implements OnInit {
     if (userId) {
       this.cartService.clearCart(userId).subscribe(
         () => {
-          this.loadCartItems(); // Refresh cart items
+          this.loadCartItems(); 
         },
         (error) => {
           console.error('Error clearing cart:', error);

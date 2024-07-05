@@ -9,7 +9,7 @@ export interface Order {
     name: string;
     status: string; 
     address: string;
-    phoneNumber: string;  // Add status field
+    phoneNumber: string;  
     date?: Date;
     totalPrice?: number;
 }

@@ -65,7 +65,7 @@ export const getAllProducts = async (): Promise<Product[]> => {
     try {
         let pool = await sql.connect(sqlConfig);
         let result = await pool.request().execute('GetAllProducts');
-        return result.recordset.filter(product => product.stock > 0);  // Filter out products with zero stock
+        return result.recordset.filter(product => product.stock > 0);  
     } catch (err) {
         throw new Error(`Error fetching products: ${getErrorMessage(err)}`);
     }

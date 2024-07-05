@@ -27,14 +27,14 @@ export const createOrder = async (userId: string, productId: string, quantity: s
             .input('userId', sql.VarChar, userId)
             .input('productId', sql.VarChar, productId)
             .input('quantity', sql.VarChar, quantity)
-            .input('price', sql.VarChar, (parseFloat(price) * parseFloat(quantity)).toFixed(2))  // Convert price to string format
+            .input('price', sql.VarChar, (parseFloat(price) * parseFloat(quantity)).toFixed(2)) 
             .input('flavor', sql.VarChar, flavor)
             .input('name', sql.VarChar, name)
-            .input('address', sql.VarChar, address)  // Include address
-            .input('phoneNumber', sql.VarChar, phoneNumber)  // Include phone number
-            .input('email', sql.VarChar, email)  // Include email
-            .input('status', sql.VarChar, 'Pending')  // Default status
-            .input('date', sql.DateTime, new Date())  // Set current date and time
+            .input('address', sql.VarChar, address) 
+            .input('phoneNumber', sql.VarChar, phoneNumber) 
+            .input('email', sql.VarChar, email)  
+            .input('status', sql.VarChar, 'Pending')  
+            .input('date', sql.DateTime, new Date())  
             .execute('CreateOrder');
     } catch (err) {
         throw new Error(`Error creating order: ${err instanceof Error ? err.message : 'An unknown error occurred'}`);
@@ -61,7 +61,7 @@ export const updateOrder = async (orderId: string, quantity: string) => {
         await pool.request()
             .input('orderId', sql.VarChar, orderId)
             .input('quantity', sql.VarChar, quantity)
-            .input('price', sql.VarChar, (parseFloat(price) * parseFloat(quantity)).toFixed(2))  // Convert price to string format
+            .input('price', sql.VarChar, (parseFloat(price) * parseFloat(quantity)).toFixed(2))  
             .input('flavor', sql.VarChar, flavor)
             .input('name', sql.VarChar, name)
             .execute('UpdateOrder');

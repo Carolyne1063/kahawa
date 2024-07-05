@@ -8,14 +8,14 @@
         <span class="item-price">${{ formatPrice(item.price) }}</span>
         <span class="item-quantity">x{{ item.quantity }}</span>
         <button class="order" (click)="selectItem(item)">Order</button>
-        <button (click)="removeItem(item.cartId, item.productId)" class="remove-btn">Remove</button> <!-- Remove button -->
+        <button (click)="removeItem(item.cartId, item.productId)" class="remove-btn">Remove</button> 
       </div>
       <div class="total">
         <span>Total:</span>
         <span>${{ getTotal() }}</span>
       </div>
       <br><br>
-      <button (click)="clearCart()" class="remove-all-btn">Remove All</button> <!-- Remove All button -->
+      <button (click)="clearCart()" class="remove-all-btn">Remove All</button> 
     </div>
     <div class="order-form">
       <h2 class="section-title">Order Checkout</h2>

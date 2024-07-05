@@ -42,11 +42,11 @@
 }
 
 .orders-table .pending {
-  color: #ffa500; /* Orange for pending status */
+  color: #ffa500; 
 }
 
 .orders-table .confirmed {
-  color: #32cd32; /* Green for confirmed status */
+  color: #32cd32; 
 }
 
 .orders-table td:last-child {

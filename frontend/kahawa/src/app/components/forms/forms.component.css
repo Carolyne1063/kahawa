@@ -1,4 +1,4 @@
-/* src/app/sign-up/sign-up.component.css */
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 * {
@@ -122,7 +122,6 @@ input {
   left: 0;
   width: 50%;
   z-index: 2;
-  /* background-color: #754e14; */
 }
 
 .container.right-panel-active .sign-in-container {

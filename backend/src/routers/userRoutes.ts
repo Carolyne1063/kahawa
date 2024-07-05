@@ -5,9 +5,9 @@ const router = Router();
 
 router.post('/register', registerUser);
 router.post('/login', loginUserController);
-router.put('/update', updateUserByEmailOrId); // Use userId in path
-router.delete('/:userId', deleteUserController); // Use userId in path
+router.put('/update', updateUserByEmailOrId); 
+router.delete('/:userId', deleteUserController); 
 router.get('/', getUsers);
-router.get('/:userId', getUser); // Use userId in path
+router.get('/:userId', getUser); 
 
 export default router;

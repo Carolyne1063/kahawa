@@ -3,14 +3,14 @@ import { sqlConfig } from '../sqlConfig';
 import { User, LoginDetails } from '../interfaces/users';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { v4 as uuidv4 } from 'uuid'; // Import uuid library
+import { v4 as uuidv4 } from 'uuid'; 
 
 const createUser = async (user: User) => {
-  const userId = uuidv4(); // Generate UUID for userId
+  const userId = uuidv4();
   const hashedPassword = await bcrypt.hash(user.password, 10);
   const pool = await sql.connect(sqlConfig);
   const request = pool.request()
-    .input('userId', sql.UniqueIdentifier, userId) // Use generated UUID
+    .input('userId', sql.UniqueIdentifier, userId) 
     .input('firstname', sql.NVarChar, user.firstname)
     .input('lastname', sql.NVarChar, user.lastname)
     .input('phoneNumber', sql.VarChar, user.phoneNumber)
@@ -35,7 +35,7 @@ const getUserByEmail = async (email: string) => {
   return result.recordset[0];
 };
 
-// Hardcoded admin credentials
+
 const adminCredentials = {
   email: 'admin@example.com',
   password: 'adminpassword'
@@ -44,14 +44,14 @@ const adminCredentials = {
 const loginUser = async (loginDetails: LoginDetails) => {
   console.log('Attempting to log in:', loginDetails);
 
-  // Check if login details match hardcoded admin credentials
+ 
   if (loginDetails.email === adminCredentials.email && loginDetails.password === adminCredentials.password) {
     console.log('Admin login successful');
     const token = jwt.sign({ email: adminCredentials.email, role: 'admin' }, 'your_secret_key', { expiresIn: '1h' });
     return { token, role: 'admin' };
   }
 
-  // Check if login details match any user in the database
+  
   const user = await getUserByEmail(loginDetails.email);
   if (user) {
     console.log('User found:', user);

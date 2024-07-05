@@ -3,14 +3,14 @@ import { v4 as uuidv4 } from 'uuid';
 import { CartItem } from '../interfaces/cart';
 import { sqlConfig } from '../sqlConfig';
 
-// Add an item to the cart
+
 export const addItemToCart = async (userId: string, productId: string, quantity: string) => {
-    const cartId = uuidv4();  // Generate a unique ID for the cart item
+    const cartId = uuidv4();  
 
     try {
         let pool = await sql.connect(sqlConfig);
 
-        // Fetch product details
+        
         const productResult = await pool.request()
             .input('productId', sql.VarChar, productId)
             .query('SELECT price, flavor, name, stock FROM products WHERE productId = @productId');
@@ -25,7 +25,7 @@ export const addItemToCart = async (userId: string, productId: string, quantity:
             throw new Error('Not enough stock available');
         }
 
-        const totalPrice = (parseFloat(price) * parseFloat(quantity)).toFixed(2);  // Calculate total price
+        const totalPrice = (parseFloat(price) * parseFloat(quantity)).toFixed(2);  
 
         const transaction = new sql.Transaction(pool);
 
@@ -37,7 +37,7 @@ export const addItemToCart = async (userId: string, productId: string, quantity:
                 .input('userId', sql.VarChar, userId)
                 .input('productId', sql.VarChar, productId)
                 .input('quantity', sql.VarChar, quantity)
-                .input('price', sql.VarChar, totalPrice)  // Use the calculated total price
+                .input('price', sql.VarChar, totalPrice)  
                 .input('flavor', sql.VarChar, flavor)
                 .input('name', sql.VarChar, name)
                 .execute('AddItemToCart');
@@ -58,12 +58,12 @@ export const addItemToCart = async (userId: string, productId: string, quantity:
     }
 };
 
-// Update an item in the cart
+
 export const updateCartItem = async (cartId: string, userId: string, productId: string, quantity: string) => {
     try {
         let pool = await sql.connect(sqlConfig);
 
-        // Fetch product details for recalculating the price
+        
         const productResult = await pool.request()
             .input('productId', sql.VarChar, productId)
             .query('SELECT price FROM products WHERE productId = @productId');
@@ -73,14 +73,14 @@ export const updateCartItem = async (cartId: string, userId: string, productId: 
         }
 
         const { price } = productResult.recordset[0];
-        const totalPrice = (parseFloat(price) * parseFloat(quantity)).toFixed(2);  // Calculate total price
+        const totalPrice = (parseFloat(price) * parseFloat(quantity)).toFixed(2); 
 
         await pool.request()
             .input('cartId', sql.VarChar, cartId)
             .input('userId', sql.VarChar, userId)
             .input('productId', sql.VarChar, productId)
             .input('quantity', sql.VarChar, quantity)
-            .input('price', sql.VarChar, totalPrice)  // Use the calculated total price
+            .input('price', sql.VarChar, totalPrice)  
             .execute('UpdateCartItem');
     } catch (err) {
         console.error(`Error updating cart item: ${err instanceof Error ? err.message : 'An unknown error occurred'}`);
@@ -88,12 +88,11 @@ export const updateCartItem = async (cartId: string, userId: string, productId: 
     }
 };
 
-// Remove an item from the cart
 export const removeItemFromCart = async (cartId: string, userId: string, productId: string) => {
     try {
         let pool = await sql.connect(sqlConfig);
 
-        // Fetch current quantity of the item in the cart
+        
         const cartResult = await pool.request()
             .input('cartId', sql.VarChar, cartId)
             .query('SELECT quantity FROM cart WHERE cartId = @cartId');
@@ -104,7 +103,7 @@ export const removeItemFromCart = async (cartId: string, userId: string, product
 
         const quantity = cartResult.recordset[0].quantity;
 
-        // Fetch current stock of the product
+       
         const productResult = await pool.request()
             .input('productId', sql.VarChar, productId)
             .query('SELECT stock FROM products WHERE productId = @productId');
@@ -121,14 +120,12 @@ export const removeItemFromCart = async (cartId: string, userId: string, product
         try {
             await transaction.begin();
 
-            // Remove the item from the cart
             await transaction.request()
                 .input('cartId', sql.VarChar, cartId)
                 .input('userId', sql.VarChar, userId)
                 .input('productId', sql.VarChar, productId)
                 .execute('RemoveItemFromCart');
 
-            // Update the stock of the product
             await transaction.request()
                 .input('productId', sql.VarChar, productId)
                 .input('newStock', sql.Int, newStock)
@@ -145,7 +142,7 @@ export const removeItemFromCart = async (cartId: string, userId: string, product
     }
 };
 
-// Get all items in the cart
+
 export const getCartItems = async (userId: string): Promise<CartItem[]> => {
     try {
         let pool = await sql.connect(sqlConfig);
@@ -159,7 +156,7 @@ export const getCartItems = async (userId: string): Promise<CartItem[]> => {
     }
 };
 
-// Clear the cart
+
 export const clearCart = async (userId: string) => {
     try {
         let pool = await sql.connect(sqlConfig);

@@ -23,7 +23,7 @@ const routes: Routes = [
     {path:'menu-admin',component:MenuAdminComponent},
     {path:'orders',component:OrdersComponent},
     {path:'customers',component:CustomersComponent},
-//ADMIN
+
   
    {path:'user',component:UserDashboardComponent,children:[
     {path:'menu',component:MenuComponent},

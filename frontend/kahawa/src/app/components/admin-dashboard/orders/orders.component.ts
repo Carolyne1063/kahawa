@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 import { AdminComponent } from '../admin/admin.component';
 import { CustomersComponent } from '../customers/customers.component';
 import { MenuAdminComponent } from '../menu-admin/menu-admin.component';
-import { Order } from '../../../interfaces/order'; // Adjust the import path as needed
+import { Order } from '../../../interfaces/order'; 
 
 @Component({
   selector: 'app-orders',
@@ -29,7 +29,7 @@ export class OrdersComponent implements OnInit {
       (data: Order[]) => {
         console.log(data);
         this.orders = data;
-        this.orders.forEach(order => order.editingStatus = false); // Initialize editing status for each order
+        this.orders.forEach(order => order.editingStatus = false); 
       },
       (error) => {
         console.error('Error fetching orders:', error);
@@ -54,11 +54,11 @@ export class OrdersComponent implements OnInit {
       (response) => {
         console.log('Order status updated successfully:', response);
         order.editingStatus = false;
-        this.loadOrders(); // Refresh the list of orders to reflect changes
+        this.loadOrders(); 
       },
       (error) => {
         console.error('Error updating order status:', error);
-        // Handle error as needed
+        
       }
     );
   }
@@ -68,11 +68,10 @@ export class OrdersComponent implements OnInit {
       this.orderService.deleteOrder(orderId).subscribe(
         (response) => {
           console.log('Order deleted successfully:', response);
-          this.loadOrders(); // Refresh the list of orders after deletion
+          this.loadOrders(); 
         },
         (error) => {
           console.error('Error deleting order:', error);
-          // Handle error as needed
         }
       );
     }

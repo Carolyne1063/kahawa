@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';  // Import Router
+import { RouterOutlet, Router } from '@angular/router';  
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User, LoginDetails } from '../../interfaces/user';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';  // Import AuthService
+import { AuthService } from '../../services/auth.service';  
 
 @Component({
   selector: 'app-forms',
@@ -18,14 +18,14 @@ import { AuthService } from '../../services/auth.service';  // Import AuthServic
 export class FormsComponent implements OnInit {
   registerForm: FormGroup;
   loginForm: FormGroup;
-  registerSuccessMessage: string | null = null;  // Add success message variables
+  registerSuccessMessage: string | null = null;  
   loginSuccessMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private authService: AuthService  // Inject AuthService
+    private authService: AuthService  
   ) {
     this.registerForm = this.fb.group({
       firstname: ['', Validators.required],
@@ -64,10 +64,10 @@ export class FormsComponent implements OnInit {
       this.userService.register(user).subscribe(
         response => {
           console.log('User registered successfully', response);
-          this.registerSuccessMessage = 'Registration successful!';  // Set success message
+          this.registerSuccessMessage = 'Registration successful!';  
           setTimeout(() => {
             this.router.navigate(['/forms']);
-          }, 4000);  // Redirect after 4 seconds
+          }, 4000);  
         },
         error => {
           console.error('Error registering user', error);
@@ -82,20 +82,20 @@ export class FormsComponent implements OnInit {
       this.userService.login(loginDetails).subscribe(
         response => {
           console.log('User logged in successfully', response);
-          this.loginSuccessMessage = 'Login successful!';  // Set success message
+          this.loginSuccessMessage = 'Login successful!';  
 
-          // Store the token and userId
+         
           localStorage.setItem('token', response.token);
-          this.authService.setUserId(response.userId);  // Store the userId
+          this.authService.setUserId(response.userId);  
 
-          // Redirect based on role after a delay
+          
           setTimeout(() => {
             if (response.role === 'admin') {
               this.router.navigate(['/admin']);
             } else {
               this.router.navigate(['/user']);
             }
-          }, 2000);  // Redirect after 2 seconds
+          }, 2000); 
         },
         error => {
           console.error('Error logging in', error);

@@ -47,14 +47,9 @@
     text-align: center;
     padding: 20px;
     font-size: 18px;
-    /* margin-top: 10px; */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
-/* .sidebar li:hover {
-    background-color: #967846; 
-} */
 
 .container {
     flex: 1;

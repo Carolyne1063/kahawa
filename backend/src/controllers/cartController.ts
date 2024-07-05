@@ -2,10 +2,10 @@ import { Request, Response } from 'express';
 import { addItemToCart, updateCartItem, removeItemFromCart, getCartItems, clearCart } from '../services/cartService';
 import { v4 as uuidv4 } from 'uuid';
 
-// Add an item to the cart
+
 export const addItemToCartController = async (req: Request, res: Response) => {
     const { userId, productId, quantity } = req.body;
-    const cartId = uuidv4();  // Generate a unique ID for the cart item
+    const cartId = uuidv4();  
 
     try {
         await addItemToCart(userId, productId, quantity);
@@ -19,7 +19,7 @@ export const addItemToCartController = async (req: Request, res: Response) => {
     }
 };
 
-// Update an item in the cart
+
 export const updateCartItemController = async (req: Request, res: Response) => {
     const { cartId, userId, productId, quantity } = req.body;
 
@@ -35,7 +35,7 @@ export const updateCartItemController = async (req: Request, res: Response) => {
     }
 };
 
-// Remove an item from the cart
+
 export const removeItemFromCartController = async (req: Request, res: Response) => {
     const { cartId, userId, productId } = req.body;
 
@@ -51,7 +51,7 @@ export const removeItemFromCartController = async (req: Request, res: Response) 
     }
 };
 
-// Get all items in the cart
+
 export const getCartItemsController = async (req: Request, res: Response) => {
     const { userId } = req.params;
 
@@ -67,7 +67,7 @@ export const getCartItemsController = async (req: Request, res: Response) => {
     }
 };
 
-// Clear the cart
+
 export const clearCartController = async (req: Request, res: Response) => {
     const { userId } = req.params;
 

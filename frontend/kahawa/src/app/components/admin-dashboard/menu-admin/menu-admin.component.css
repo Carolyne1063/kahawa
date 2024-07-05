@@ -1,4 +1,4 @@
-/* General styles */
+
 .dashboard {
     background-color: #000;
     color: #fff;
@@ -47,10 +47,6 @@
     transition: background-color 0.3s ease;
 }
 
-/* .sidebar li:hover {
-    background-color: #967846;
-} */
-
 .container {
     flex: 1;
     display: flex;
@@ -65,12 +61,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px; /* Adjust margin top for content spacing */
+    margin-top: 20px; 
 }
 
 .mycontent {
     width: 100%;
-    overflow-x: auto; /* Allow horizontal scroll if content overflows */
+    overflow-x: auto; 
 }
 
 .menu-table {
@@ -142,8 +138,6 @@
     background-color: #cc0000;
 }
 
-
-/* Form styles */
 .add-item-form {
     display: block;
     background-color: #000;

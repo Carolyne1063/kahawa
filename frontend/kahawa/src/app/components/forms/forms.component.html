@@ -31,7 +31,7 @@
                     <small *ngIf="registerControls['password'].errors?.['minlength']" class="text-danger">Password must be at least 6 characters</small>
                 </div>
                 <button type="submit" [disabled]="registerForm.invalid" style="margin-top:10px">Create Account</button>
-                <div *ngIf="registerSuccessMessage" class="text-success mt-3">{{ registerSuccessMessage }}</div>  <!-- Success message -->
+                <div *ngIf="registerSuccessMessage" class="text-success mt-3">{{ registerSuccessMessage }}</div>  
                 <h5>Already have an account? <a class="ghost" id="signIn" style="color:#754e14;"><u>Login</u></a></h5>
             </form>
         </div>
@@ -50,7 +50,7 @@
                 </div>
                 <a href="/reset-password" style="padding-left:150px; font-weight: bold">Forgot Your Password?</a>
                 <button type="submit" [disabled]="loginForm.invalid" style="margin-top: 10px">SIGN IN</button>
-                <div *ngIf="loginSuccessMessage" class="text-success mt-3">{{ loginSuccessMessage }}</div>  <!-- Success message -->
+                <div *ngIf="loginSuccessMessage" class="text-success mt-3">{{ loginSuccessMessage }}</div>  
                 <h5>New here? <a class="ghost" id="signUp" style="color:#754e14;"><u>Register</u></a></h5>
             </form>
         </div>
